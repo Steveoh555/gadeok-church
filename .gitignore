@@ -23,3 +23,6 @@ desktop.ini
 Thumbs.db
 __pycache__/
 *.pyc
+
+# 배포 스크립트(로컬 전용)
+홈페이지올리기.bat
