@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-09-13 08:03",
+ "generated": "2026-09-13 08:57",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -185,10 +185,7 @@ window.SITE_DATA = {
   "youtubeHandle": "@gadeokchurch6932",
   "youtubeUrl": "https://www.youtube.com/@gadeokchurch6932/streams",
   "youtubeChannelId": "UCoHd535wCFY7p-rhgn0nFIQ",
-  "cafeUrl": "http://cafe.naver.com/kadukchurch",
-  "sourceFolders": [
-   "G:\\.shortcut-targets-by-id\\1OLnIi3NVg1__9j9Aa8NOIkHQ-B3SbEiw\\가덕교회 주보\\2026년 주보"
-  ]
+  "cafeUrl": "http://cafe.naver.com/kadukchurch"
  },
  "weeks": [
   {
@@ -7502,6 +7499,13 @@ window.SITE_DATA = {
  ],
  "videos": [
   {
+   "id": "-Com4RZKby8",
+   "title": "가덕교회 주일학교예배 26.09.13",
+   "date": "20260913",
+   "kind": "주일학교예배",
+   "views": ""
+  },
+  {
    "id": "qLmjF2OMWSs",
    "title": "가덕교회 주일학교예배 26.09.06",
    "date": "20260906",
@@ -7725,5 +7729,6 @@ window.SITE_DATA = {
    "kind": "주일학교예배",
    "views": "조회수 35회"
   }
- ]
+ ],
+ "albums": []
 };

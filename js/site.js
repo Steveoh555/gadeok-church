@@ -736,6 +736,166 @@
     render();
   }
 
+  /* ── 페이지: 사진첩 ── */
+  var ALBUMS = (D.albums || []).filter(function (a) { return a.photos && a.photos.length; })
+    .sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  var PV = { album: null, i: 0, opener: null };
+
+  function fmtTaken(album, taken) {
+    /* "2026-10-04 14:05" → 행사 날짜와 같으면 "오후 2:05", 다르면 날짜까지 */
+    var m = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/.exec(taken || "");
+    if (!m) return "";
+    var h = +m[4];
+    var time = (h < 12 ? "오전 " : "오후 ") + ((h % 12) || 12) + ":" + m[5];
+    var day = m[1] + m[2] + m[3];
+    return day === album.date ? time : fmtDate(day, true) + " " + time;
+  }
+  function ensurePhotoModal() {
+    var m = $("#photoModal");
+    if (m) return m;
+    m = el("div", "photo-modal",
+      '<img class="pv-img" alt="">' +
+      '<div class="pv-info"><div class="pv-text"><b></b><p></p><small></small></div>' +
+      '<div class="pv-btns">' +
+      '<button type="button" data-go="-1" aria-label="이전 사진">‹ 이전</button>' +
+      '<button type="button" data-go="1" aria-label="다음 사진">다음 ›</button>' +
+      '<button type="button" class="pv-close">닫기</button></div></div>');
+    m.id = "photoModal";
+    m.setAttribute("role", "dialog");
+    m.setAttribute("aria-modal", "true");
+    document.body.appendChild(m);
+    function close() {
+      m.classList.remove("show");
+      document.body.style.overflow = "";
+      if (PV.opener) PV.opener.focus();
+    }
+    function go(d) {
+      var n = PV.album.photos.length;
+      PV.i = (PV.i + d + n) % n;
+      showPhoto();
+    }
+    m.addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (b && b.hasAttribute("data-go")) go(+b.getAttribute("data-go"));
+      else if (b && b.classList.contains("pv-close")) close();
+      else if (e.target === m) close();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (!m.classList.contains("show")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft" && PV.album.photos.length > 1) go(-1);
+      else if (e.key === "ArrowRight" && PV.album.photos.length > 1) go(1);
+    });
+    var sx = null;
+    m.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    m.addEventListener("touchend", function (e) {
+      if (sx == null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      sx = null;
+      if (Math.abs(dx) > 50 && PV.album.photos.length > 1) go(dx < 0 ? 1 : -1);
+    });
+    return m;
+  }
+  function showPhoto() {
+    var m = $("#photoModal"), a = PV.album, p = a.photos[PV.i];
+    var img = $(".pv-img", m);
+    img.src = p.src;
+    img.alt = p.title || a.title;
+    $(".pv-text b", m).textContent = p.title || a.title;
+    var cap = $(".pv-text p", m);
+    cap.textContent = p.caption || "";
+    cap.hidden = !p.caption;
+    var meta = [fmtDate(a.date, true)], tk = fmtTaken(a, p.taken);
+    if (tk) meta.push(tk + " 촬영");
+    meta.push((PV.i + 1) + " / " + a.photos.length);
+    $(".pv-text small", m).textContent = meta.join(" · ");
+    $all("[data-go]", m).forEach(function (b) { b.hidden = a.photos.length < 2; });
+    if (a.photos.length > 1) new Image().src = a.photos[(PV.i + 1) % a.photos.length].src;
+  }
+  function openPhotoViewer(album, i, opener) {
+    var m = ensurePhotoModal();
+    PV.album = album; PV.i = i; PV.opener = opener || null;
+    showPhoto();
+    m.classList.add("show");
+    document.body.style.overflow = "hidden";
+    $(".pv-close", m).focus();
+  }
+
+  function renderAlbum(a) {
+    document.title = a.title + " | 사진첩 | 가덕교회";
+    var title = $("#photoTitle");
+    title.textContent = a.title;
+    var back = el("a", "more-link album-back", "← 사진첩 목록");
+    back.href = "photos.html";
+    title.parentNode.insertBefore(back, title);
+    $("#photoSub").hidden = true;
+    var view = $("#photoView");
+    view.appendChild(el("div", "album-head",
+      '<div class="album-meta"><span class="chip">' + esc(fmtDate(a.date, true)) + "</span>" +
+      '<span class="chip">사진 ' + a.photos.length + "장</span></div>" +
+      (a.intro ? '<p class="album-intro">' + esc(a.intro) + "</p>" : "")));
+    var grid = el("div", "photo-grid");
+    a.photos.forEach(function (p, i) {
+      var fig = el("figure", "photo-card");
+      var btn = el("button", "",
+        '<img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.title || a.title) + '" width="' + p.w + '" height="' + p.h + '">');
+      btn.type = "button";
+      btn.setAttribute("aria-label", (p.title || a.title) + " 크게 보기");
+      btn.addEventListener("click", function () { openPhotoViewer(a, i, btn); });
+      fig.appendChild(btn);
+      if (p.title || p.caption) {
+        fig.appendChild(el("figcaption", "",
+          (p.title ? "<b>" + esc(p.title) + "</b>" : "") + (p.caption ? "<p>" + esc(p.caption) + "</p>" : "")));
+      }
+      grid.appendChild(fig);
+    });
+    view.appendChild(grid);
+  }
+
+  function pagePhotos() {
+    var view = $("#photoView"), filter = $("#photoFilter");
+    if (!ALBUMS.length) {
+      view.appendChild(el("div", "empty-note",
+        "아직 올라온 사진이 없습니다.<br>교회 행사 사진이 올라오면 이곳에 차곡차곡 모입니다."));
+      return;
+    }
+    var want = param("album");
+    var found = ALBUMS.filter(function (a) { return a.id === want; })[0];
+    if (found) return renderAlbum(found);
+
+    var years = [], cur = "전체";
+    ALBUMS.forEach(function (a) { var y = a.date.slice(0, 4); if (years.indexOf(y) < 0) years.push(y); });
+    if (years.length > 1) {
+      filter.hidden = false;
+      ["전체"].concat(years).forEach(function (y) {
+        var b = el("button", y === cur ? "on" : "", y === "전체" ? "전체" : y + "년");
+        b.type = "button";
+        b.addEventListener("click", function () {
+          cur = y;
+          $all("button", filter).forEach(function (x) { x.classList.toggle("on", x === b); });
+          render();
+        });
+        filter.appendChild(b);
+      });
+    }
+    function render() {
+      view.innerHTML = "";
+      var grid = el("div", "album-grid");
+      ALBUMS.filter(function (a) { return cur === "전체" || a.date.slice(0, 4) === cur; }).forEach(function (a) {
+        var card = el("a", "album-card",
+          '<div class="ac-cover"><img loading="lazy" src="' + esc(a.cover || a.photos[0].src) + '" alt="">' +
+          '<span class="ac-count">사진 ' + a.photos.length + "장</span></div>" +
+          '<div class="ac-body"><div class="ac-date">' + esc(fmtDate(a.date, true)) + "</div>" +
+          '<div class="ac-title">' + esc(a.title) + "</div>" +
+          (a.intro ? '<p class="ac-intro">' + esc(a.intro) + "</p>" : "") + "</div>");
+        card.href = "photos.html?album=" + encodeURIComponent(a.id);
+        grid.appendChild(card);
+      });
+      view.appendChild(grid);
+    }
+    render();
+  }
+
   /* ── 페이지: 교회소개 ── */
   function pageAbout() {
     var sg = $("#staffGrid");
@@ -761,6 +921,7 @@
     if (page === "sermons") pageSermons();
     if (page === "bulletins") pageBulletins();
     if (page === "study") pageStudy();
+    if (page === "photos") pagePhotos();
     if (page === "about") pageAbout();
   });
 })();
