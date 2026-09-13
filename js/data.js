@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-09-13 08:57",
+ "generated": "2026-09-13 09:14",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -7552,7 +7552,7 @@ window.SITE_DATA = {
    "title": "가덕교회 오후예배 26.08.23",
    "date": "20260823",
    "kind": "오후예배",
-   "views": "조회수 108회"
+   "views": "조회수 109회"
   },
   {
    "id": "-HbXbFrlKfg",
@@ -7730,5 +7730,23 @@ window.SITE_DATA = {
    "views": "조회수 35회"
   }
  ],
- "albums": []
+ "albums": [
+  {
+   "id": "20260724-a2cc26",
+   "date": "20260724",
+   "title": "중고등부 수련회 단체사진",
+   "intro": "7월 24일 밤, 중고등부 수련회의 한 장면입니다. 밤 10시가 넘었는데도 표정만큼은 한낮처럼 환합니다.",
+   "cover": "assets/photos/20260724-a2cc26/e2ed96184b.jpg",
+   "photos": [
+    {
+     "src": "assets/photos/20260724-a2cc26/e2ed96184b.jpg",
+     "w": 1000,
+     "h": 750,
+     "taken": "2026-07-24 22:02",
+     "title": "밤 10시, 모닥불 앞에 다 모였다",
+     "caption": "화로 불씨가 아직 살아 있는 잔디밭에 쉰 명 가까운 얼굴이 한 프레임에 들어왔습니다. 뒤로는 바다 건너 불빛이 반짝이고, 앞줄은 브이와 손가락 하트로 빈틈이 없습니다. 이 인원이 한 번에 카메라를 보게 한 것만으로도 수련회는 이미 성공입니다."
+    }
+   ]
+  }
+ ]
 };
