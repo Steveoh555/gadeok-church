@@ -514,7 +514,8 @@
           esc(fmtDate(occWeek.date)) + " 주보 기준)</small>";
         occ = "<ul>" + entries.map(function (e2) {
           return "<li>" + esc(e2.who) + ' <span style="color:var(--ink-mute);font-size:var(--fs-caption)">' + esc(e2.period) + "</span></li>";
-        }).join("") + "</ul>";
+        }).join("") + "</ul>" +
+          '<p class="mi-note">선교사님의 안전을 위해 이름은 영문 글자로 표시합니다.</p>';
       } else if (h.occupants && h.occupants.length) {
         occ = "<ul>" + h.occupants.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>";
       } else if (!h.landmark && !h.poi) {

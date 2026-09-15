@@ -421,6 +421,7 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 .mission-info .mi-occ b { display: block; color: var(--peri-deep); margin-bottom: 5px; font-size: var(--fs-caption); }
 .mission-info .mi-occ ul { margin: 0; padding-left: 18px; }
 .mission-info .mi-occ .none { color: var(--ink-mute); }
+.mission-info .mi-occ .mi-note { margin-top: 8px; font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute); }
 .mission-info .mi-actions { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
 .mission-list { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
 .mission-list button {
