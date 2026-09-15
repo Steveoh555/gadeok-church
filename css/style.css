@@ -391,28 +391,60 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 .info-table tr + tr th, .info-table tr + tr td { border-top: 1px solid var(--line); }
 
 /* ── 선교관 지도 ── */
-.mission-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; align-items: stretch; }
+/* 지도는 가로 전체, 설명·목록은 그 아래. 이름표(.mv-tag)는 SVG 위에 겹친 HTML이라 지도가 줄어도 13px 그대로다.
+   860px 이하에서는 지도를 820px로 고정하고 옆으로 밀어 보게 해 이름표끼리 겹치지 않게 한다. */
 .mission-map-card {
-  position: relative; border-radius: 20px; overflow: hidden;
-  border: 1px solid var(--line); box-shadow: var(--shadow); background: #fff;
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); background: #f3f2ed;
 }
-.mission-map-card svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+.mv-scroll { overflow: hidden; }
+.mv-canvas { position: relative; }
+.mv-canvas svg { display: block; width: 100%; height: auto; font-family: var(--font); }
 .mv-b { cursor: pointer; outline: none; }
-.mv-b .hit { fill: transparent; stroke: transparent; transition: fill 0.12s; }
-.mv-b:hover .hit { fill: rgba(123, 127, 192, 0.12); }
-.mv-b.on .hit {
-  fill: rgba(123, 127, 192, 0.14);
-  stroke: var(--peri-deep); stroke-width: 2.2; stroke-dasharray: 6 5;
+.mv-b .hit { fill: transparent; stroke: transparent; transition: fill 0.15s, stroke 0.15s; }
+.mv-b:hover .hit { fill: rgba(60, 62, 120, 0.06); }
+.mv-b.on .hit { fill: rgba(60, 62, 120, 0.07); stroke: rgba(60, 62, 120, 0.3); stroke-width: 1; }
+.mv-b:focus-visible .hit { stroke: var(--peri-deep); stroke-width: 2; }
+.mv-tag, .mv-note { position: absolute; white-space: nowrap; line-height: 1.5; }
+.mv-tag {
+  padding: 2px 10px; border-radius: 999px;
+  border: 1px solid rgba(60, 62, 120, 0.16); background: rgba(255, 255, 255, 0.96);
+  color: var(--peri-deep); font-size: var(--fs-caption); font-weight: 600; letter-spacing: -0.01em;
+  box-shadow: 0 1px 4px rgba(42, 43, 69, 0.1);
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
-.mv-b:focus-visible .hit { stroke: var(--peri-deep); stroke-width: 2.2; }
-.m-pin.minor .tag { display: none; }
-.m-pin.minor:hover .tag, .m-pin.minor.on .tag { display: block; }
-.mission-info {
-  background: #fff; border: 1px solid var(--line); border-radius: 20px;
-  box-shadow: var(--shadow); padding: 24px 26px;
-  display: flex; flex-direction: column; gap: 10px;
+.mv-tag.poi { color: var(--ink-mute); font-weight: var(--fw-caption); }
+.mv-tag.landmark { background: var(--peri-deep); border-color: var(--peri-deep); color: #fff; }
+.mv-tag:hover { border-color: var(--peri-deep); }
+.mv-tag.on {
+  z-index: 2; background: var(--peri-deep); border-color: var(--peri-deep); color: #fff;
+  box-shadow: 0 0 0 3px rgba(60, 62, 120, 0.18), 0 2px 8px rgba(42, 43, 69, 0.18);
 }
-.mission-info .mi-name { font-size: var(--fs-h3); font-weight: var(--fw-h3); color: var(--peri-deep); }
+.mv-tag:focus-visible { outline: 2px solid var(--peri-strong); outline-offset: 2px; }
+.mv-note {
+  pointer-events: none; font-size: var(--fs-caption); font-weight: var(--fw-caption);
+  color: #8d8e9f; letter-spacing: 0.04em; text-shadow: 0 0 3px #f3f2ed, 0 0 3px #f3f2ed;
+}
+.mv-canvas .a-b { transform: translate(-50%, 0); }
+.mv-canvas .a-t { transform: translate(-50%, -100%); }
+.mv-canvas .a-l { transform: translate(-100%, -50%); }
+.mv-canvas .a-r { transform: translate(0, -50%); }
+.mv-canvas .a-c { transform: translate(-50%, -50%); }
+.mv-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap;
+  padding: 10px 16px; background: #fff; border-top: 1px solid var(--line);
+  font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute);
+}
+.mv-legend { display: flex; gap: 6px 16px; flex-wrap: wrap; }
+.mv-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.mv-hint { display: none; }
+.mission-layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 20px; margin-top: 20px; align-items: start; }
+.mission-info, .mission-side {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.mission-info { padding: 24px 26px; display: flex; flex-direction: column; gap: 10px; }
+.mission-info .mi-kind { font-size: var(--fs-caption); font-weight: 600; color: var(--peri-strong); letter-spacing: 0.04em; }
+.mission-info .mi-name { font-size: var(--fs-h3); font-weight: var(--fw-h3); color: var(--peri-deep); line-height: 1.4; }
 .mission-info .mi-addr { font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute); }
 .mission-info .mi-desc { font-size: var(--fs-body); line-height: 1.7; }
 .mission-info .mi-occ {
@@ -422,15 +454,23 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 .mission-info .mi-occ ul { margin: 0; padding-left: 18px; }
 .mission-info .mi-occ .none { color: var(--ink-mute); }
 .mission-info .mi-occ .mi-note { margin-top: 8px; font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute); }
-.mission-info .mi-actions { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
-.mission-list { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.mission-info .mi-actions { margin-top: 4px; display: flex; gap: 8px; flex-wrap: wrap; }
+.mission-side { padding: 20px 22px; }
+.mission-list { display: flex; flex-direction: column; gap: 18px; }
+.ml-label { font-size: var(--fs-caption); font-weight: 600; color: var(--ink-mute); margin-bottom: 8px; }
+.ml-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .mission-list button {
-  padding: 7px 13px; border-radius: 999px; border: 1.5px solid var(--line);
-  background: #fff; font-size: var(--fs-caption); font-weight: 700; color: var(--ink-mute);
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: #fff; font-size: var(--fs-caption); font-weight: 600; color: var(--ink);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
+.mission-list button:hover { border-color: var(--peri); color: var(--peri-deep); }
 .mission-list button.on { background: var(--peri-deep); border-color: var(--peri-deep); color: #fff; }
 @media (max-width: 860px) {
   .mission-layout { grid-template-columns: 1fr; }
+  .mv-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .mv-canvas { width: 820px; }
+  .mv-hint { display: inline; }
 }
 
 /* ── 사진첩 페이지 ── */

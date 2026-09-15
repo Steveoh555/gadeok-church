@@ -355,7 +355,10 @@
   /* ── 가덕선교마을 지도 (직접 그린 SVG, 구글맵 실측 배치 기반) ── */
   /* 카카오맵 위성사진 실측 기반 배치 (2026-09 사용자 제공 캡처).
      북쪽: 마을(도서관·정두리·파출소·초등·중학교) / 남쪽: 가덕교회 캠퍼스(본당·식당·스토리하우스·선교관동)
-     101·201·202호는 캠퍼스 안 선교관동 한 건물이라 house-101 하나로 그린다. */
+     101·201·202호는 캠퍼스 안 선교관동 한 건물이라 house-101 하나로 그린다.
+     건물 이름표는 SVG 글자가 아니라 지도 위에 겹친 HTML 버튼이다(2026-09-15).
+     SVG 글자는 지도와 함께 줄어 휴대폰에서 읽을 수 없었기 때문. 이름표 위치는 viewBox 좌표를 %로 바꿔 둔다.
+     label: "l"이면 이름표를 건물 왼쪽에(기본은 아래), name: 지도에 쓸 이름(없으면 config 이름) */
   var MV = {
     "jeongduri":      { x: 520, y: 108, kind: "house" },
     "library":        { x: 300, y: 122, kind: "library" },
@@ -363,138 +366,139 @@
     "elementary":     { x: 524, y: 302, kind: "school" },
     "middle":         { x: 278, y: 310, kind: "school" },
     "seomgim":        { x: 612, y: 392, kind: "house" },
-    "church":         { x: 325, y: 480, kind: "church" },
-    "house-101":      { x: 450, y: 505, kind: "annex" },
+    "church":         { x: 325, y: 480, kind: "church", label: "l" },
+    "house-101":      { x: 450, y: 505, kind: "annex", name: "선교관 101·201·202호" },
     "greenville-401": { x: 452, y: 592, kind: "house" },
     "haengun-401":    { x: 272, y: 592, kind: "house" }
   };
   var MV_HIT = { annex: [76, 82], house: [88, 76], church: [104, 158], school: [140, 78], police: [92, 80], library: [96, 80] };
+  /* 클릭 대상이 아닌 안내 글자. a: 기준점 대비 위치(b 아래·t 위·l 왼쪽·r 오른쪽·c 가운데) */
+  var MV_NOTES = [
+    { t: "식당", x: 396, y: 444, a: "b" },
+    { t: "스토리하우스", x: 455, y: 378, a: "t" },
+    { t: "거가대로", x: 116, y: 250, a: "r" },
+    { t: "저수지", x: 660, y: 604, a: "c" }
+  ];
+  /* [벽, 지붕] — 선교관은 페리윙클, 교회는 네이비, 주변 시설은 회색 */
+  var MV_COLOR = {
+    house: ["#6f73b8", "#3c3e78"], annex: ["#6f73b8", "#3c3e78"], church: ["#3c3e78", "#2a2c5c"],
+    school: ["#b4b6c8", "#8c8ea5"], police: ["#b4b6c8", "#8c8ea5"], library: ["#b4b6c8", "#8c8ea5"]
+  };
 
-  function mvLabel(x, y, txt, size) {
-    return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-size="' + (size || 13.5) +
-      '" font-weight="700" fill="#3c3e78" stroke="#ffffff" stroke-width="3.5" paint-order="stroke">' + esc(txt) + "</text>";
+  function mvRect(x, y, w, h, fill, rx) {
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"' +
+      (rx ? ' rx="' + rx + '"' : "") + ' fill="' + fill + '"/>';
   }
-  function mvWin(x, y, w, h) {
-    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="1.5" fill="#dfe2f4" stroke="#5a5ea6" stroke-width="1"/>';
-  }
-  function mvBody(x, y, w, h, fill) {
-    return '<rect x="' + (x - w / 2) + '" y="' + (y - h) + '" width="' + w + '" height="' + h + '" fill="' + (fill || "#fffdf6") + '" stroke="#4a4c86" stroke-width="1.2"/>';
-  }
+  function mvWin(x, y, w, h) { return mvRect(x, y, w, h, "rgba(255,255,255,0.62)", 1); }
+  function mvDoor(x, y, w, h) { return mvRect(x - w / 2, y - h, w, h, "rgba(255,255,255,0.38)", 1); }
+  function mvBody(x, y, w, h, fill) { return mvRect(x - w / 2, y - h, w, h, fill); }
   function mvRoof(x, topY, w, rise, fill) {
-    return '<polygon points="' + (x - w / 2 - 6) + "," + topY + " " + (x + w / 2 + 6) + "," + topY + " " + x + "," + (topY - rise) +
-      '" fill="' + fill + '" stroke="#4a4c86" stroke-width="1.2" stroke-linejoin="round"/>';
+    return '<polygon points="' + (x - w / 2 - 5) + "," + topY + " " + (x + w / 2 + 5) + "," + topY + " " + x + "," + (topY - rise) +
+      '" fill="' + fill + '"/>';
   }
-  function mvDoor(x, y, w, h, fill) {
-    return '<rect x="' + (x - w / 2) + '" y="' + (y - h) + '" width="' + w + '" height="' + h + '" rx="2" fill="' + (fill || "#5a5ea6") + '"/>';
+  function mvShadow(x, y, w) {
+    return '<ellipse cx="' + x + '" cy="' + (y + 1) + '" rx="' + (w / 2 + 10) + '" ry="6" fill="rgba(42,43,69,0.10)"/>';
   }
   function mvBuilding(id, h) {
-    var p = MV[id], x = p.x, y = p.y, s = "";
+    var p = MV[id], x = p.x, y = p.y, c = MV_COLOR[p.kind], s = "";
     if (p.kind === "annex") {
-      s = mvBody(x, y, 62, 50) + mvRoof(x, y - 50, 62, 17, "#7b7fc0") +
+      s = mvShadow(x, y, 62) + mvBody(x, y, 62, 50, c[0]) + mvRoof(x, y - 50, 62, 17, c[1]) +
         mvWin(x - 24, y - 42, 13, 11) + mvWin(x - 6, y - 42, 13, 11) + mvWin(x + 12, y - 42, 13, 11) +
-        mvDoor(x - 18, y, 10, 14) + mvDoor(x, y, 10, 14) + mvDoor(x + 18, y, 10, 14) +
-        mvLabel(x, y + 17, "선교관 101·201·202호", 11);
+        mvDoor(x - 18, y, 10, 14) + mvDoor(x, y, 10, 14) + mvDoor(x + 18, y, 10, 14);
     } else if (p.kind === "house") {
-      s = mvBody(x, y, 64, 40) + mvRoof(x, y - 40, 64, 20, "#7b7fc0") + mvDoor(x, y, 12, 17) +
-        mvWin(x - 24, y - 30, 13, 11) + mvWin(x + 11, y - 30, 13, 11) +
-        mvLabel(x, y + 18, h.name);
+      s = mvShadow(x, y, 64) + mvBody(x, y, 64, 40, c[0]) + mvRoof(x, y - 40, 64, 20, c[1]) + mvDoor(x, y, 12, 17) +
+        mvWin(x - 24, y - 30, 13, 11) + mvWin(x + 11, y - 30, 13, 11);
     } else if (p.kind === "church") {
-      s = mvBody(x, y, 70, 48) + mvRoof(x, y - 48, 70, 26, "#3c3e78") +
-        '<rect x="' + (x - 9) + '" y="' + (y - 106) + '" width="18" height="34" fill="#fffdf6" stroke="#4a4c86" stroke-width="1.2"/>' +
-        '<polygon points="' + (x - 12) + "," + (y - 106) + " " + (x + 12) + "," + (y - 106) + " " + x + "," + (y - 128) +
-        '" fill="#3c3e78" stroke="#4a4c86" stroke-width="1"/>' +
-        '<line x1="' + x + '" y1="' + (y - 143) + '" x2="' + x + '" y2="' + (y - 128) + '" stroke="#3c3e78" stroke-width="2.6"/>' +
-        '<line x1="' + (x - 5) + '" y1="' + (y - 138) + '" x2="' + (x + 5) + '" y2="' + (y - 138) + '" stroke="#3c3e78" stroke-width="2.6"/>' +
-        '<circle cx="' + x + '" cy="' + (y - 96) + '" r="3.2" fill="#dfe2f4" stroke="#5a5ea6" stroke-width="1"/>' +
-        mvDoor(x, y, 14, 19) + '<circle cx="' + x + '" cy="' + (y - 19) + '" r="7" fill="#5a5ea6"/>' +
-        mvWin(x - 26, y - 34, 12, 16) + mvWin(x + 14, y - 34, 12, 16) +
-        mvLabel(x, y + 19, h.name, 15);
+      s = mvShadow(x, y, 70) + mvRect(x - 9, y - 106, 18, 36, c[0]) +
+        '<polygon points="' + (x - 12) + "," + (y - 106) + " " + (x + 12) + "," + (y - 106) + " " + x + "," + (y - 128) + '" fill="' + c[1] + '"/>' +
+        '<path d="M' + x + " " + (y - 143) + "V" + (y - 128) + "M" + (x - 5) + " " + (y - 138) + "H" + (x + 5) +
+        '" stroke="' + c[1] + '" stroke-width="2.4" stroke-linecap="round"/>' +
+        mvBody(x, y, 70, 48, c[0]) + mvRoof(x, y - 48, 70, 26, c[1]) +
+        '<circle cx="' + x + '" cy="' + (y - 94) + '" r="3.2" fill="rgba(255,255,255,0.62)"/>' +
+        mvDoor(x, y, 14, 20) + mvWin(x - 26, y - 34, 12, 16) + mvWin(x + 14, y - 34, 12, 16);
     } else if (p.kind === "school") {
-      s = mvBody(x, y, 120, 52) +
-        '<rect x="' + (x - 66) + '" y="' + (y - 60) + '" width="132" height="9" rx="3" fill="#7fa886" stroke="#4a4c86" stroke-width="1.2"/>';
+      s = mvShadow(x, y, 120) + mvBody(x, y, 120, 52, c[0]) + mvRect(x - 64, y - 60, 128, 8, c[1], 2);
       for (var i = 0; i < 4; i++) {
         s += mvWin(x - 52 + i * 29, y - 44, 16, 12) + mvWin(x - 52 + i * 29, y - 25, 16, 12);
       }
-      s += mvDoor(x, y, 15, 18) + mvLabel(x, y + 18, h.name);
+      s += mvDoor(x, y, 15, 18);
     } else if (p.kind === "police") {
-      s = mvBody(x, y, 70, 42) + mvRoof(x, y - 42, 70, 18, "#5577b0") +
-        '<rect x="' + (x - 27) + '" y="' + (y - 39) + '" width="54" height="10" rx="3" fill="#5577b0"/>' +
-        '<circle cx="' + x + '" cy="' + (y - 34) + '" r="3" fill="#ffd76a"/>' +
-        mvDoor(x, y, 12, 16) + mvWin(x - 25, y - 24, 12, 10) + mvWin(x + 13, y - 24, 12, 10) +
-        mvLabel(x, y + 17, h.name);
+      s = mvShadow(x, y, 70) + mvBody(x, y, 70, 42, c[0]) + mvRoof(x, y - 42, 70, 18, c[1]) +
+        mvDoor(x, y, 12, 16) + mvWin(x - 25, y - 30, 12, 10) + mvWin(x + 13, y - 30, 12, 10);
     } else if (p.kind === "library") {
-      s = mvBody(x, y, 74, 44) + mvRoof(x, y - 44, 74, 19, "#7fa886");
-      for (var c = -1; c <= 1; c++) {
-        s += '<rect x="' + (x + c * 22 - 2.5) + '" y="' + (y - 34) + '" width="5" height="34" fill="#e8e4d2" stroke="#4a4c86" stroke-width="0.8"/>';
-      }
-      s += mvDoor(x, y, 12, 16) + mvLabel(x, y + 17, h.name);
+      s = mvShadow(x, y, 74) + mvBody(x, y, 74, 44, c[0]) + mvRoof(x, y - 44, 74, 19, c[1]);
+      for (var k = -1; k <= 1; k++) s += mvRect(x + k * 22 - 2.5, y - 36, 5, 36, "rgba(255,255,255,0.5)");
     }
     var hit = MV_HIT[p.kind];
     return '<g class="mv-b" data-id="' + h.id + '" role="button" tabindex="0" aria-label="' + esc(h.name) + '">' +
-      '<rect class="hit" x="' + (x - hit[0] / 2) + '" y="' + (y - hit[1]) + '" width="' + hit[0] + '" height="' + (hit[1] + 26) + '" rx="12"/>' +
+      '<rect class="hit" x="' + (x - hit[0] / 2) + '" y="' + (y - hit[1]) + '" width="' + hit[0] + '" height="' + (hit[1] + 12) + '" rx="10"/>' +
       s + "<title>" + esc(h.name) + "</title></g>";
   }
   function mvTree(x, y, r, dark) {
-    return '<rect x="' + (x - 2) + '" y="' + (y - 9) + '" width="4" height="9" rx="1.5" fill="#a08a67"/>' +
-      '<circle cx="' + x + '" cy="' + (y - 9 - r * 0.7) + '" r="' + r + '" fill="' + (dark ? "#8fae7e" : "#a8c497") + '" stroke="#7d9a6d" stroke-width="1"/>';
+    return '<circle cx="' + x + '" cy="' + (y - r) + '" r="' + r + '" fill="' + (dark ? "#cbd6bf" : "#d6dfcb") + '"/>';
   }
-  function mvMini(x, y) {
-    return '<rect x="' + (x - 8) + '" y="' + (y - 11) + '" width="16" height="11" fill="#eae8f3" stroke="#bcbfda" stroke-width="0.8"/>' +
-      '<polygon points="' + (x - 10) + "," + (y - 11) + " " + (x + 10) + "," + (y - 11) + " " + x + "," + (y - 18) +
-      '" fill="#c9cce6" stroke="#bcbfda" stroke-width="0.8"/>';
-  }
+  function mvMini(x, y) { return mvRect(x - 8, y - 12, 16, 12, "#e0ded5", 1.5); }
   function mvField(x, y, w, h, fill, rot) {
-    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="8" fill="' + fill +
-      '" opacity="0.85" transform="rotate(' + rot + " " + (x + w / 2) + " " + (y + h / 2) + ')"/>';
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="6" fill="' + fill +
+      '" transform="rotate(' + rot + " " + (x + w / 2) + " " + (y + h / 2) + ')"/>';
+  }
+  function mvPath(d, color, w, dash) {
+    return '<path d="' + d + '" fill="none" stroke="' + color + '" stroke-width="' + w + '" stroke-linecap="round"' +
+      (dash ? ' stroke-dasharray="' + dash + '"' : "") + "/>";
   }
   function mvScene() {
-    var s = '<rect x="0" y="0" width="1000" height="640" fill="#f4efe0"/>';
-    /* 동쪽 밭(패치워크)과 산자락 */
-    s += mvField(690, 70, 95, 46, "#e7e0c8", -7) + mvField(806, 138, 110, 50, "#dde5c4", 5) +
-      mvField(718, 226, 84, 42, "#efe7d2", -4) + mvField(836, 300, 100, 52, "#e2e8cb", 7) +
-      mvField(702, 372, 92, 44, "#e9e2ca", -6) + mvField(842, 452, 92, 46, "#dfe6c7", 4) +
-      mvField(730, 536, 80, 40, "#ece4cd", -5);
-    s += '<ellipse cx="1015" cy="300" rx="85" ry="390" fill="#c9dcb6"/>';
-    /* 서쪽 숲과 거가대로 */
-    s += '<ellipse cx="20" cy="130" rx="165" ry="220" fill="#c8dbb4"/>' +
-      '<ellipse cx="-10" cy="450" rx="175" ry="260" fill="#bfd5ab"/>' +
-      '<ellipse cx="70" cy="620" rx="190" ry="120" fill="#cadeb7"/>';
-    var hwy = "M 96 0 C 76 180 110 400 88 640";
-    s += '<path d="' + hwy + '" fill="none" stroke="#dfc06a" stroke-width="15" stroke-linecap="round"/>' +
-      '<path d="' + hwy + '" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="12 12" opacity="0.85"/>';
+    var s = '<rect x="0" y="0" width="1000" height="640" fill="#f3f2ed"/>';
+    /* 동쪽 밭과 산자락 */
+    s += mvField(690, 70, 95, 46, "#eae8df", -7) + mvField(806, 138, 110, 50, "#e5e8dc", 5) +
+      mvField(718, 226, 84, 42, "#eae8df", -4) + mvField(836, 300, 100, 52, "#e5e8dc", 7) +
+      mvField(702, 372, 92, 44, "#eae8df", -6) + mvField(842, 452, 92, 46, "#e5e8dc", 4) +
+      mvField(730, 536, 80, 40, "#eae8df", -5);
+    s += '<ellipse cx="1015" cy="300" rx="85" ry="390" fill="#e1e6d8"/>';
+    /* 서쪽 숲 */
+    s += '<ellipse cx="20" cy="130" rx="165" ry="220" fill="#e0e6d6"/>' +
+      '<ellipse cx="-10" cy="450" rx="175" ry="260" fill="#dbe2d1"/>' +
+      '<ellipse cx="70" cy="620" rx="190" ry="120" fill="#e1e7d8"/>';
     /* 남동쪽 저수지 */
-    s += '<ellipse cx="660" cy="604" rx="56" ry="27" fill="#bcd3ec" stroke="#9fbcdf" stroke-width="2"/>';
-    /* 길 (동선길: 북쪽 마을에서 남쪽 교회 앞을 지나 내려간다) */
+    s += '<ellipse cx="660" cy="604" rx="56" ry="27" fill="#d5e1ea"/>';
+    /* 가덕교회 마당 경계 (길보다 먼저 그려 길이 경계 위를 지나가게) */
+    s += '<rect x="262" y="372" width="230" height="152" rx="16" fill="rgba(90,94,166,0.06)" stroke="rgba(90,94,166,0.38)" stroke-width="1.2" stroke-dasharray="5 5"/>';
+    /* 길: 테두리를 모두 먼저 그리고 속을 덮어서 갈림길이 매끈하게 이어지게 한다 */
+    var hwy = "M 96 0 C 76 180 110 400 88 640";
     var road = "M 505 14 C 490 120 470 220 478 320 C 486 400 496 470 504 640";
-    s += '<path d="' + road + '" fill="none" stroke="#d3c092" stroke-width="32" stroke-linecap="round"/>';
-    s += '<path d="' + road + '" fill="none" stroke="#e9d9ae" stroke-width="24" stroke-linecap="round"/>';
     var lanes = ["M310 130 Q 400 142 494 124", "M520 114 Q 512 104 505 92", "M520 214 L 484 210",
       "M524 308 L 482 306", "M280 316 Q 380 326 476 308", "M612 398 Q 552 404 496 394",
       "M486 590 L 502 582", "M272 598 C 360 614 440 604 500 588"];
-    lanes.forEach(function (d) {
-      s += '<path d="' + d + '" fill="none" stroke="#ddcb9d" stroke-width="12" stroke-linecap="round"/>';
-    });
+    s += mvPath(hwy, "#dedbd1", 20) + mvPath(road, "#e2dfd5", 30);
+    lanes.forEach(function (d) { s += mvPath(d, "#e2dfd5", 13); });
+    s += mvPath(hwy, "#fbfaf7", 15) + mvPath(hwy, "#d9d5c9", 1.2, "10 12") + mvPath(road, "#fdfcfa", 24);
+    lanes.forEach(function (d) { s += mvPath(d, "#fdfcfa", 8); });
     /* 북쪽 마을 (작은 집들) */
     s += mvMini(362, 82) + mvMini(408, 68) + mvMini(578, 138) + mvMini(622, 172) + mvMini(392, 168) +
       mvMini(568, 224) + mvMini(614, 254) + mvMini(350, 222) + mvMini(432, 132) + mvMini(590, 90);
-    /* 가덕교회 마당 (본당·식당·스토리하우스·선교관동) */
-    s += '<rect x="262" y="372" width="230" height="152" rx="18" fill="#f1ebd7" stroke="#e0d5b6" stroke-width="2"/>';
-    s += '<rect x="382" y="404" width="36" height="24" fill="#fffdf6" stroke="#4a4c86" stroke-width="1"/>' +
-      '<rect x="378" y="400" width="44" height="7" rx="3" fill="#b9bcd8" stroke="#4a4c86" stroke-width="0.8"/>' +
-      mvLabel(400, 442, "식당", 9.5) +
-      '<rect x="438" y="386" width="34" height="22" fill="#fffdf6" stroke="#4a4c86" stroke-width="1"/>' +
-      '<rect x="434" y="382" width="42" height="7" rx="3" fill="#b9bcd8" stroke="#4a4c86" stroke-width="0.8"/>' +
-      mvLabel(455, 421, "스토리하우스", 9.5);
+    /* 캠퍼스 부속 건물: 식당·스토리하우스 */
+    s += mvRect(382, 404, 36, 24, "#c3c5dd") + mvRect(378, 400, 44, 6, "#a4a7cc", 2) +
+      mvRect(438, 386, 34, 22, "#c3c5dd") + mvRect(434, 382, 42, 6, "#a4a7cc", 2);
     /* 나무 */
     s += mvTree(178, 152, 11) + mvTree(148, 348, 12, 1) + mvTree(206, 476, 11) + mvTree(238, 246, 10, 1) +
       mvTree(648, 306, 11) + mvTree(662, 476, 10, 1) + mvTree(772, 560, 10) + mvTree(578, 512, 11, 1) +
       mvTree(560, 344, 9) + mvTree(410, 350, 10, 1) + mvTree(680, 160, 10);
+    /* 방위표 */
+    s += '<g transform="translate(956 50)"><circle r="17" fill="#ffffff" stroke="#dcdeee"/>' +
+      '<polygon points="0,-11 5,2 0,0 -5,2" fill="#3c3e78"/><polygon points="0,11 5,2 0,0 -5,2" fill="#c3c5d4"/>' +
+      '<text y="-22" text-anchor="middle" font-size="11" font-weight="700" fill="#3c3e78">N</text></g>';
     return s;
+  }
+  /* 지도 위 HTML 글자. id가 있으면 누를 수 있는 이름표 버튼, 없으면 안내 글자 */
+  function mvTag(x, y, a, cls, text, id) {
+    var style = "left:" + (x / 10) + "%;top:" + (y / 6.4) + "%";
+    if (!id) return '<span class="mv-note a-' + a + '" style="' + style + '" aria-hidden="true">' + text + "</span>";
+    return '<button type="button" class="mv-tag a-' + a + (cls ? " " + cls : "") + '" data-id="' + id + '" style="' + style + '">' + text + "</button>";
   }
 
   function initMissionMap() {
     var mapBox = $("#missionMap"), info = $("#missionInfo"), listBox = $("#missionList");
     if (!mapBox || !CFG.missionHouses || !CFG.missionHouses.length) return;
+    var scroller = $("#missionScroll");
     var intro = $("#missionIntro");
     if (intro && CFG.missionVillageIntro) intro.textContent = CFG.missionVillageIntro;
     /* 최신 주보의 '선교관 8채 사용일정' 표에서 입주 현황을 가져온다 */
@@ -502,11 +506,20 @@
     for (var wi = WEEKS.length - 1; wi >= 0; wi--) {
       if (WEEKS[wi].missionHouses) { occWeek = WEEKS[wi]; break; }
     }
-    var cur = null;
-    function select(h) {
-      cur = h;
-      $all(".mv-b", mapBox).forEach(function (p) { p.classList.toggle("on", p.getAttribute("data-id") === h.id); });
+    /* 201·202호는 101호와 같은 선교관동 건물이라 지도에서는 house-101을 표시한다 */
+    function mapIdOf(h) { return MV[h.id] ? h.id : (h.minor ? "house-101" : ""); }
+    /* 휴대폰처럼 지도를 옆으로 밀어 보는 화면에서 고른 건물을 가운데로 */
+    function reveal(id, smooth) {
+      if (!scroller || !MV[id] || scroller.scrollWidth <= scroller.clientWidth) return;
+      var left = Math.max(0, MV[id].x / 1000 * scroller.scrollWidth - scroller.clientWidth / 2);
+      if (smooth && scroller.scrollTo) scroller.scrollTo({ left: left, behavior: "smooth" });
+      else scroller.scrollLeft = left;
+    }
+    function select(h, fromMap) {
+      var mid = mapIdOf(h);
+      $all(".mv-b, .mv-tag", mapBox).forEach(function (p) { p.classList.toggle("on", p.getAttribute("data-id") === mid); });
       $all("button", listBox).forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-id") === h.id); });
+      if (!fromMap) reveal(mid, true);
       var occ = "", occTitle = "머무시는 분들";
       var entries = occWeek && occWeek.missionHouses[h.id];
       if (entries && entries.length) {
@@ -522,6 +535,7 @@
         occ = '<span class="none">현재 머무시는 선교사님 정보가 준비 중입니다.</span>';
       }
       info.innerHTML =
+        '<div class="mi-kind">' + (h.landmark ? "교회" : h.poi ? "주변 시설" : "선교관") + "</div>" +
         '<div class="mi-name">' + esc(h.name) + "</div>" +
         '<div class="mi-addr">' + esc(h.address) + "</div>" +
         '<div class="mi-desc">' + esc(h.desc || "") + "</div>" +
@@ -533,25 +547,48 @@
         encodeURIComponent(h.address) + '">구글맵</a>' +
         "</div>";
     }
-    var svg = mvScene();
-    CFG.missionHouses.forEach(function (h) {
-      if (MV[h.id]) svg += mvBuilding(h.id, h);
-      var lb = el("button", "", esc(h.name));
-      lb.type = "button";
-      lb.setAttribute("data-id", h.id);
-      lb.addEventListener("click", function () { select(h); });
-      listBox.appendChild(lb);
-    });
-    mapBox.innerHTML =
-      '<svg viewBox="0 0 1000 640" role="img" aria-label="가덕선교마을 지도">' + svg + "</svg>";
     var byId = {};
     CFG.missionHouses.forEach(function (h) { byId[h.id] = h; });
-    $all(".mv-b", mapBox).forEach(function (g) {
-      function go() { var h = byId[g.getAttribute("data-id")]; if (h) select(h); }
-      g.addEventListener("click", go);
-      g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+
+    var svg = mvScene(), tags = "";
+    CFG.missionHouses.forEach(function (h) {
+      var p = MV[h.id];
+      if (!p) return;
+      svg += mvBuilding(h.id, h);
+      var left = p.label === "l";
+      tags += mvTag(left ? p.x - MV_HIT[p.kind][0] / 2 : p.x, left ? p.y - 30 : p.y + 10, left ? "l" : "b",
+        h.landmark ? "landmark" : (h.poi ? "poi" : ""), esc(p.name || h.name), h.id);
     });
-    select(CFG.missionHouses[0]);
+    MV_NOTES.forEach(function (n) { tags += mvTag(n.x, n.y, n.a, "", esc(n.t)); });
+    mapBox.innerHTML = '<svg viewBox="0 0 1000 640" role="img" aria-label="가덕선교마을 지도">' + svg + "</svg>" + tags;
+
+    /* 지도 아래 목록: 선교관 / 교회·주변 시설 */
+    [["선교관", function (h) { return !h.landmark && !h.poi; }],
+     ["교회 · 주변 시설", function (h) { return h.landmark || h.poi; }]].forEach(function (g) {
+      var items = CFG.missionHouses.filter(g[1]);
+      if (!items.length) return;
+      var box = el("div", "ml-group", '<div class="ml-label">' + esc(g[0]) + "</div>");
+      var chips = el("div", "ml-chips");
+      items.forEach(function (h) {
+        var lb = el("button", "", esc(h.name));
+        lb.type = "button";
+        lb.setAttribute("data-id", h.id);
+        lb.addEventListener("click", function () { select(h); });
+        chips.appendChild(lb);
+      });
+      box.appendChild(chips);
+      listBox.appendChild(box);
+    });
+
+    $all(".mv-b, .mv-tag", mapBox).forEach(function (g) {
+      function go() { var h = byId[g.getAttribute("data-id")]; if (h) select(h, true); }
+      g.addEventListener("click", go);
+      if (g.tagName !== "BUTTON") {
+        g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+      }
+    });
+    select(CFG.missionHouses[0], true);
+    reveal(mapIdOf(CFG.missionHouses[0]), false);
   }
 
   /* ── 페이지: 설교방송 ── */

@@ -120,11 +120,25 @@
         <h2>가덕선교마을 · 선교관 안내</h2>
       </div>
       <p class="sub sub-spaced" id="missionIntro"></p>
-      <div class="mission-layout">
-        <div class="mission-map-card" id="missionMap"></div>
-        <div class="mission-info" id="missionInfo"></div>
+      <div class="mission-map-card">
+        <div class="mv-scroll" id="missionScroll">
+          <div class="mv-canvas" id="missionMap"></div>
+        </div>
+        <div class="mv-foot">
+          <span class="mv-legend">
+            <span><i style="background:#6f73b8"></i>선교관</span>
+            <span><i style="background:#3c3e78"></i>가덕교회</span>
+            <span><i style="background:#b4b6c8"></i>주변 시설</span>
+          </span>
+          <span class="mv-hint">지도를 좌우로 밀어 보세요</span>
+        </div>
       </div>
-      <div class="mission-list" id="missionList"></div>
+      <div class="mission-layout">
+        <div class="mission-info" id="missionInfo"></div>
+        <div class="mission-side">
+          <div class="mission-list" id="missionList"></div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
