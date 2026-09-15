@@ -358,13 +358,14 @@
      101·201·202호는 캠퍼스 안 선교관동 한 건물이라 house-101 하나로 그린다.
      건물 이름표는 SVG 글자가 아니라 지도 위에 겹친 HTML 버튼이다(2026-09-15).
      SVG 글자는 지도와 함께 줄어 휴대폰에서 읽을 수 없었기 때문. 이름표 위치는 viewBox 좌표를 %로 바꿔 둔다.
-     label: "l"이면 이름표를 건물 왼쪽에(기본은 아래), name: 지도에 쓸 이름(없으면 config 이름) */
+     label: "l"이면 이름표를 건물 왼쪽에(기본은 아래), name: 지도에 쓸 이름(없으면 config 이름)
+     s: 건물 그림 배율(바닥 가운데 기준). 학교·파출소는 사용자 요청으로 0.5 (2026-09-15) */
   var MV = {
     "jeongduri":      { x: 520, y: 108, kind: "house" },
     "library":        { x: 300, y: 122, kind: "library" },
-    "police":         { x: 520, y: 208, kind: "police" },
-    "elementary":     { x: 524, y: 302, kind: "school" },
-    "middle":         { x: 278, y: 310, kind: "school" },
+    "police":         { x: 520, y: 208, kind: "police", s: 0.5 },
+    "elementary":     { x: 524, y: 302, kind: "school", s: 0.5 },
+    "middle":         { x: 278, y: 310, kind: "school", s: 0.5 },
     "seomgim":        { x: 612, y: 392, kind: "house" },
     "church":         { x: 325, y: 480, kind: "church", label: "l" },
     "house-101":      { x: 450, y: 505, kind: "annex", name: "선교관 101·201·202호" },
@@ -379,18 +380,21 @@
     { t: "거가대로", x: 116, y: 250, a: "r" },
     { t: "저수지", x: 660, y: 604, a: "c" }
   ];
-  /* [벽, 지붕] — 선교관은 페리윙클, 교회는 네이비, 주변 시설은 회색 */
+  /* [벽, 지붕, 창·문] — 사용자 선택(2026-09-15): 선교관(도서관 포함)은 따뜻한 테라코타,
+     교회는 하얀 벽에 페리윙클 지붕, 학교·파출소는 연한 회색. 처음의 진한 남색은 "무서워 보인다"고 해서 뺐다 */
+  var TERRA = ["#ecd2bb", "#c27f5a", "rgba(122,72,45,0.28)"], GRAYC = ["#cfd1dc", "#a7a9ba", "rgba(79,83,160,0.25)"];
   var MV_COLOR = {
-    house: ["#6f73b8", "#3c3e78"], annex: ["#6f73b8", "#3c3e78"], church: ["#3c3e78", "#2a2c5c"],
-    school: ["#b4b6c8", "#8c8ea5"], police: ["#b4b6c8", "#8c8ea5"], library: ["#b4b6c8", "#8c8ea5"]
+    house: TERRA, annex: TERRA, library: TERRA, church: ["#fcfcff", "#7b7fc0", "rgba(79,83,160,0.3)"],
+    school: GRAYC, police: GRAYC
   };
 
   function mvRect(x, y, w, h, fill, rx) {
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"' +
       (rx ? ' rx="' + rx + '"' : "") + ' fill="' + fill + '"/>';
   }
-  function mvWin(x, y, w, h) { return mvRect(x, y, w, h, "rgba(255,255,255,0.62)", 1); }
-  function mvDoor(x, y, w, h) { return mvRect(x - w / 2, y - h, w, h, "rgba(255,255,255,0.38)", 1); }
+  var mvInk = GRAYC[2]; /* 창·문 색. mvBuilding이 건물마다 MV_COLOR[kind][2]로 바꾼다 */
+  function mvWin(x, y, w, h) { return mvRect(x, y, w, h, mvInk, 1); }
+  function mvDoor(x, y, w, h) { return mvRect(x - w / 2, y - h, w, h, mvInk, 1); }
   function mvBody(x, y, w, h, fill) { return mvRect(x - w / 2, y - h, w, h, fill); }
   function mvRoof(x, topY, w, rise, fill) {
     return '<polygon points="' + (x - w / 2 - 5) + "," + topY + " " + (x + w / 2 + 5) + "," + topY + " " + x + "," + (topY - rise) +
@@ -401,6 +405,7 @@
   }
   function mvBuilding(id, h) {
     var p = MV[id], x = p.x, y = p.y, c = MV_COLOR[p.kind], s = "";
+    mvInk = c[2];
     if (p.kind === "annex") {
       s = mvShadow(x, y, 62) + mvBody(x, y, 62, 50, c[0]) + mvRoof(x, y - 50, 62, 17, c[1]) +
         mvWin(x - 24, y - 42, 13, 11) + mvWin(x - 6, y - 42, 13, 11) + mvWin(x + 12, y - 42, 13, 11) +
@@ -410,11 +415,14 @@
         mvWin(x - 24, y - 30, 13, 11) + mvWin(x + 11, y - 30, 13, 11);
     } else if (p.kind === "church") {
       s = mvShadow(x, y, 70) + mvRect(x - 9, y - 106, 18, 36, c[0]) +
+        '<rect x="' + (x - 9) + '" y="' + (y - 106) + '" width="18" height="36" fill="none" stroke="rgba(79,83,160,0.35)"/>' +
         '<polygon points="' + (x - 12) + "," + (y - 106) + " " + (x + 12) + "," + (y - 106) + " " + x + "," + (y - 128) + '" fill="' + c[1] + '"/>' +
         '<path d="M' + x + " " + (y - 143) + "V" + (y - 128) + "M" + (x - 5) + " " + (y - 138) + "H" + (x + 5) +
         '" stroke="' + c[1] + '" stroke-width="2.4" stroke-linecap="round"/>' +
-        mvBody(x, y, 70, 48, c[0]) + mvRoof(x, y - 48, 70, 26, c[1]) +
-        '<circle cx="' + x + '" cy="' + (y - 94) + '" r="3.2" fill="rgba(255,255,255,0.62)"/>' +
+        mvBody(x, y, 70, 48, c[0]) +
+        '<rect x="' + (x - 35) + '" y="' + (y - 48) + '" width="70" height="48" fill="none" stroke="rgba(79,83,160,0.35)"/>' +
+        mvRoof(x, y - 48, 70, 26, c[1]) +
+        '<circle cx="' + x + '" cy="' + (y - 94) + '" r="3.2" fill="rgba(79,83,160,0.35)"/>' +
         mvDoor(x, y, 14, 20) + mvWin(x - 26, y - 34, 12, 16) + mvWin(x + 14, y - 34, 12, 16);
     } else if (p.kind === "school") {
       s = mvShadow(x, y, 120) + mvBody(x, y, 120, 52, c[0]) + mvRect(x - 64, y - 60, 128, 8, c[1], 2);
@@ -427,11 +435,12 @@
         mvDoor(x, y, 12, 16) + mvWin(x - 25, y - 30, 12, 10) + mvWin(x + 13, y - 30, 12, 10);
     } else if (p.kind === "library") {
       s = mvShadow(x, y, 74) + mvBody(x, y, 74, 44, c[0]) + mvRoof(x, y - 44, 74, 19, c[1]);
-      for (var k = -1; k <= 1; k++) s += mvRect(x + k * 22 - 2.5, y - 36, 5, 36, "rgba(255,255,255,0.5)");
+      for (var k = -1; k <= 1; k++) s += mvRect(x + k * 22 - 2.5, y - 36, 5, 36, mvInk);
     }
-    var hit = MV_HIT[p.kind];
+    var k = p.s || 1, hw = MV_HIT[p.kind][0] * k, hh = MV_HIT[p.kind][1] * k;
+    if (k !== 1) s = '<g transform="translate(' + x + " " + y + ") scale(" + k + ") translate(" + (-x) + " " + (-y) + ')">' + s + "</g>";
     return '<g class="mv-b" data-id="' + h.id + '" role="button" tabindex="0" aria-label="' + esc(h.name) + '">' +
-      '<rect class="hit" x="' + (x - hit[0] / 2) + '" y="' + (y - hit[1]) + '" width="' + hit[0] + '" height="' + (hit[1] + 12) + '" rx="10"/>' +
+      '<rect class="hit" x="' + (x - hw / 2) + '" y="' + (y - hh) + '" width="' + hw + '" height="' + (hh + 12) + '" rx="10"/>' +
       s + "<title>" + esc(h.name) + "</title></g>";
   }
   function mvTree(x, y, r, dark) {
@@ -557,11 +566,10 @@
       svg += mvBuilding(h.id, h);
       var left = p.label === "l";
       tags += mvTag(left ? p.x - MV_HIT[p.kind][0] / 2 : p.x, left ? p.y - 30 : p.y + 10, left ? "l" : "b",
-        h.landmark ? "landmark" : (h.poi ? "poi" : ""), esc(p.name || h.name), h.id);
+        h.landmark ? "landmark" : (h.poi ? "poi" : "house"), esc(p.name || h.name), h.id);
     });
     MV_NOTES.forEach(function (n) { tags += mvTag(n.x, n.y, n.a, "", esc(n.t)); });
     mapBox.innerHTML = '<svg viewBox="0 0 1000 640" role="img" aria-label="가덕선교마을 지도">' + svg + "</svg>" + tags;
-
     /* 지도 아래 목록: 선교관 / 교회·주변 시설 */
     [["선교관", function (h) { return !h.landmark && !h.poi; }],
      ["교회 · 주변 시설", function (h) { return h.landmark || h.poi; }]].forEach(function (g) {
@@ -572,8 +580,7 @@
       items.forEach(function (h) {
         var lb = el("button", "", esc(h.name));
         lb.type = "button";
-        lb.setAttribute("data-id", h.id);
-        lb.addEventListener("click", function () { select(h); });
+        lb.setAttribute("data-id", h.id);        lb.addEventListener("click", function () { select(h); });
         chips.appendChild(lb);
       });
       box.appendChild(chips);

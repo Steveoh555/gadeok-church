@@ -403,24 +403,31 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 .mv-b { cursor: pointer; outline: none; }
 .mv-b .hit { fill: transparent; stroke: transparent; transition: fill 0.15s, stroke 0.15s; }
 .mv-b:hover .hit { fill: rgba(60, 62, 120, 0.06); }
-.mv-b.on .hit { fill: rgba(60, 62, 120, 0.07); stroke: rgba(60, 62, 120, 0.3); stroke-width: 1; }
+.mv-b.on .hit { fill: rgba(90, 94, 166, 0.05); stroke: rgba(90, 94, 166, 0.3); stroke-width: 1; }
 .mv-b:focus-visible .hit { stroke: var(--peri-deep); stroke-width: 2; }
 .mv-tag, .mv-note { position: absolute; white-space: nowrap; line-height: 1.5; }
 .mv-tag {
   padding: 2px 10px; border-radius: 999px;
   border: 1px solid rgba(60, 62, 120, 0.16); background: rgba(255, 255, 255, 0.96);
-  color: var(--peri-deep); font-size: var(--fs-caption); font-weight: 600; letter-spacing: -0.01em;
+  color: var(--peri-strong); font-size: var(--fs-caption); font-weight: 600; letter-spacing: -0.01em;
   box-shadow: 0 1px 4px rgba(42, 43, 69, 0.1);
   transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
 }
 .mv-tag.poi { color: var(--ink-mute); font-weight: var(--fw-caption); }
-.mv-tag.landmark { background: var(--peri-deep); border-color: var(--peri-deep); color: #fff; }
-.mv-tag:hover { border-color: var(--peri-deep); }
+.mv-tag.landmark { background: var(--peri-strong); border-color: var(--peri-strong); color: #fff; }
+.mv-tag:hover { border-color: var(--peri); }
 .mv-tag.on {
-  z-index: 2; background: var(--peri-deep); border-color: var(--peri-deep); color: #fff;
-  box-shadow: 0 0 0 3px rgba(60, 62, 120, 0.18), 0 2px 8px rgba(42, 43, 69, 0.18);
+  z-index: 2; background: var(--peri-strong); border-color: var(--peri-strong); color: #fff;
+  box-shadow: 0 0 0 3px rgba(90, 94, 166, 0.22), 0 2px 8px rgba(42, 43, 69, 0.16);
 }
 .mv-tag:focus-visible { outline: 2px solid var(--peri-strong); outline-offset: 2px; }
+/* 선교관 이름표는 테라코타 건물에 맞춘 갈색 (흰 글자 대비 4.5:1 이상) */
+.mv-tag.house { color: #8a4f31; border-color: rgba(138, 79, 49, 0.22); }
+.mv-tag.house:hover { border-color: #c27f5a; }
+.mv-tag.house.on {
+  background: #a8603d; border-color: #a8603d; color: #fff;
+  box-shadow: 0 0 0 3px rgba(168, 96, 61, 0.22), 0 2px 8px rgba(42, 43, 69, 0.16);
+}
 .mv-note {
   pointer-events: none; font-size: var(--fs-caption); font-weight: var(--fw-caption);
   color: #8d8e9f; letter-spacing: 0.04em; text-shadow: 0 0 3px #f3f2ed, 0 0 3px #f3f2ed;
@@ -465,8 +472,7 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .mission-list button:hover { border-color: var(--peri); color: var(--peri-deep); }
-.mission-list button.on { background: var(--peri-deep); border-color: var(--peri-deep); color: #fff; }
-@media (max-width: 860px) {
+.mission-list button.on { background: var(--peri-strong); border-color: var(--peri-strong); color: #fff; }@media (max-width: 860px) {
   .mission-layout { grid-template-columns: 1fr; }
   .mv-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
   .mv-canvas { width: 820px; }
