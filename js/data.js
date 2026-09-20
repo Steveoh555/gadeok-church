@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-09-20 08:11",
+ "generated": "2026-09-20 21:42",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -7707,18 +7707,39 @@ window.SITE_DATA = {
  ],
  "videos": [
   {
+   "id": "qssrQTmtUxM",
+   "title": "가덕교회 주일학교예배 26.09.20",
+   "date": "20260920",
+   "kind": "주일학교예배",
+   "views": "조회수 17회"
+  },
+  {
+   "id": "iJy5C6P5nsY",
+   "title": "가덕교회 오전예배 26.09.20",
+   "date": "20260920",
+   "kind": "오전예배",
+   "views": "조회수 32회"
+  },
+  {
+   "id": "Q9mFoc6TCds",
+   "title": "가덕교회 오후예배 26.09.20",
+   "date": "20260920",
+   "kind": "오후예배",
+   "views": "조회수 15회"
+  },
+  {
    "id": "QFZ2WgfrT4c",
    "title": "가덕교회 오전예배 26.09.13",
    "date": "20260913",
    "kind": "오전예배",
-   "views": "조회수 104회"
+   "views": "조회수 103회"
   },
   {
    "id": "-Com4RZKby8",
    "title": "가덕교회 주일학교예배 26.09.13",
    "date": "20260913",
    "kind": "주일학교예배",
-   "views": "조회수 53회"
+   "views": "조회수 51회"
   },
   {
    "id": "qLmjF2OMWSs",
@@ -7739,7 +7760,7 @@ window.SITE_DATA = {
    "title": "가덕교회 오후예배 26.09.06",
    "date": "20260906",
    "kind": "오후예배",
-   "views": "조회수 62회"
+   "views": "조회수 60회"
   },
   {
    "id": "yW33H79O2z8",
