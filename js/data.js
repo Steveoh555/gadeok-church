@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-09-24 09:20",
+ "generated": "2026-09-24 09:29",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -3100,13 +3100,13 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      }
     ],
     "jeongduri": [
      {
-      "who": "K목사부모",
+      "who": "J목사부모",
       "period": "4.13.~4.30"
      },
      {
@@ -3114,7 +3114,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "L(태국)",
+      "who": "K(태국)",
       "period": "6.1.~6.30"
      },
      {
@@ -3134,7 +3134,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "M(남아공)",
+      "who": "L(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -3144,7 +3144,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "N",
+      "who": "M",
       "period": "6.12.~6.14"
      },
      {
@@ -3168,7 +3168,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      }
     ]
@@ -3346,7 +3346,7 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -3360,7 +3360,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "K(태국)",
+      "who": "J(태국)",
       "period": "6.1.~6.30"
      },
      {
@@ -3384,7 +3384,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "L(남아공)",
+      "who": "K(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -3394,7 +3394,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "M",
+      "who": "L",
       "period": "6.12.~6.14"
      },
      {
@@ -3418,7 +3418,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -3604,7 +3604,7 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -3618,11 +3618,11 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "L(태국)",
+      "who": "K(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "M(태국·치앙마이)",
+      "who": "L(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -3650,7 +3650,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "N(남아공)",
+      "who": "M(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -3660,7 +3660,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "O",
+      "who": "N",
       "period": "6.12.~6.14"
      },
      {
@@ -3684,7 +3684,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -3854,7 +3854,7 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -3868,11 +3868,11 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "L(태국)",
+      "who": "K(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "M(태국·치앙마이)",
+      "who": "L(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -3900,7 +3900,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "N(남아공)",
+      "who": "M(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -3910,7 +3910,7 @@ window.SITE_DATA = {
       "period": "5.24.~5.25"
      },
      {
-      "who": "O(서울)",
+      "who": "N(서울)",
       "period": "6.12.~6.14"
      },
      {
@@ -3934,7 +3934,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -4096,7 +4096,7 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -4106,11 +4106,11 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "L(태국)",
+      "who": "K(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "M(태국·치앙마이)",
+      "who": "L(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -4138,13 +4138,13 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "N(남아공)",
+      "who": "M(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
     "library": [
      {
-      "who": "O(서울)",
+      "who": "N(서울)",
       "period": "6.12.~6.14"
      },
      {
@@ -4168,7 +4168,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(J&K)",
+      "who": "복음Network(권&J)",
       "period": "8.20.~8.22"
      },
      {
@@ -4318,7 +4318,7 @@ window.SITE_DATA = {
       "period": "6.7.~6.9"
      },
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -4328,11 +4328,11 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "J(태국)",
+      "who": "I(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "K(태국·치앙마이)",
+      "who": "J(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -4360,13 +4360,13 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "L(남아공)",
+      "who": "K(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
     "library": [
      {
-      "who": "M(서울)",
+      "who": "L(서울)",
       "period": "6.12.~6.14"
      },
      {
@@ -4390,7 +4390,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -4548,7 +4548,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -4558,11 +4558,11 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "I(태국)",
+      "who": "H(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "J(태국·치앙마이)",
+      "who": "I(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -4590,13 +4590,13 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "K(남아공)",
+      "who": "J(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
     "library": [
      {
-      "who": "L(서울)",
+      "who": "K(서울)",
       "period": "6.12.~6.14"
      },
      {
@@ -4620,7 +4620,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -4778,7 +4778,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -4788,11 +4788,11 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "I(태국)",
+      "who": "H(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "J(태국·치앙마이)",
+      "who": "I(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -4820,7 +4820,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "K(남아공)",
+      "who": "J(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -4846,7 +4846,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -5004,7 +5004,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -5014,11 +5014,11 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "I(태국)",
+      "who": "H(태국)",
       "period": "6.1.~6.30"
      },
      {
-      "who": "J(태국·치앙마이)",
+      "who": "I(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -5046,7 +5046,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "K(남아공)",
+      "who": "J(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -5072,7 +5072,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(G&H)",
+      "who": "복음Network(권&G)",
       "period": "8.20.~8.22"
      },
      {
@@ -5242,7 +5242,7 @@ window.SITE_DATA = {
       "period": "7.4.~7.7"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -5252,7 +5252,7 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "K(태국·치앙마이)",
+      "who": "J(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -5280,7 +5280,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.5"
      },
      {
-      "who": "L(남아공)",
+      "who": "K(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -5306,7 +5306,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -5480,7 +5480,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -5490,7 +5490,7 @@ window.SITE_DATA = {
     ],
     "jeongduri": [
      {
-      "who": "K(태국·치앙마이)",
+      "who": "J(태국·치앙마이)",
       "period": "7.10.~7.13"
      },
      {
@@ -5518,7 +5518,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "L(남아공)",
+      "who": "K(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -5544,7 +5544,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -5705,7 +5705,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -5735,7 +5735,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "J(남아공)",
+      "who": "I(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -5757,7 +5757,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -5927,7 +5927,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -5957,7 +5957,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "J(남아공)",
+      "who": "I(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -5979,7 +5979,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(H&I)",
+      "who": "복음Network(권&H)",
       "period": "8.20.~8.22"
      },
      {
@@ -6153,7 +6153,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -6183,7 +6183,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "K(남아공)",
+      "who": "J(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -6201,7 +6201,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -6404,7 +6404,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(K&L)",
+      "who": "복음Network(권&K)",
       "period": "8.20.~8.22"
      },
      {
@@ -6412,7 +6412,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "M·N(스리랑카)",
+      "who": "L·M(스리랑카)",
       "period": "10.1.~10.21"
      }
     ],
@@ -6430,7 +6430,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "O(남아공)",
+      "who": "N(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -6444,7 +6444,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(K&L)",
+      "who": "복음Network(권&K)",
       "period": "8.20.~8.22"
      },
      {
@@ -6647,7 +6647,7 @@ window.SITE_DATA = {
     ],
     "seomgim": [
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -6655,7 +6655,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "K·L(스리랑카)",
+      "who": "J·K(스리랑카)",
       "period": "10.1.~10.21"
      }
     ],
@@ -6669,7 +6669,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "M목사부부",
+      "who": "L목사부부",
       "period": "8.24.~8.28"
      },
      {
@@ -6677,7 +6677,7 @@ window.SITE_DATA = {
       "period": "8.28.~9.6"
      },
      {
-      "who": "N(남아공)",
+      "who": "M(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
@@ -6687,7 +6687,7 @@ window.SITE_DATA = {
       "period": "8.16.~8.18"
      },
      {
-      "who": "복음Network(I&J)",
+      "who": "복음Network(권&I)",
       "period": "8.20.~8.22"
      },
      {
@@ -7801,85 +7801,85 @@ window.SITE_DATA = {
    "missionHouses": {
     "house-101": [
      {
-      "who": "▪박동민(청년조이풀)·:",
+      "who": "A(청년조이풀)",
       "period": "2023.5.8"
      }
     ],
     "house-201": [
      {
-      "who": "▪파올리타(성경번역선교회)·:",
+      "who": "B(성경번역선교회)",
       "period": "9.28.~2027.2.28"
      },
      {
-      "who": "▪김영기·A(까보베르데)·:",
+      "who": "C·D(까보베르데)",
       "period": "2027.5.1.~12.31"
      }
     ],
     "house-202": [
      {
-      "who": "▪박나무(인도)·:",
+      "who": "E(인도)",
       "period": "2025.4.1.~2027.3.1"
      }
     ],
     "haengun-401": [
      {
-      "who": "▪i2iDTS강사:",
+      "who": "i2iDTS강사",
       "period": "9.28.~12.19"
      }
     ],
     "greenville-401": [
      {
-      "who": "▪i2iDTS:",
+      "who": "i2iDTS",
       "period": "9.14.~12.9"
      },
      {
-      "who": "▪i2iDTS:",
+      "who": "i2iDTS",
       "period": "2027.2.25.~3.6"
      },
      {
-      "who": "▪박구하리(인도)·:",
+      "who": "F(인도)",
       "period": "2027.4.10.~5.31"
      },
      {
-      "who": "▪서대경(남아공)·:",
+      "who": "G(남아공)",
       "period": "2027.6.1.~7.1"
      },
      {
-      "who": "▪박구하리(인도)·:",
+      "who": "F(인도)",
       "period": "2027.8.7.~11.7"
      }
     ],
     "seomgim": [
      {
-      "who": "▪엄덕석(B)·:",
+      "who": "H(필리핀)",
       "period": "10.8.~10.9"
      },
      {
-      "who": "▪강병훈(남아공)·:",
+      "who": "I(남아공)",
       "period": "10.13.~10.20"
      },
      {
-      "who": "▪엄철수(튀르키예)·:",
+      "who": "J(튀르키예)",
       "period": "11.16.~11.7"
      }
     ],
     "jeongduri": [
      {
-      "who": "▪배기덕·C(분당)·:",
+      "who": "K·L(분당)",
       "period": "9.23.~9.27"
      },
      {
-      "who": "▪경성대기독청년모임:",
+      "who": "경성대기독청년모임",
       "period": "9.27.~9.28"
      },
      {
-      "who": "▪천준혁(남아공)·:",
+      "who": "M(남아공)",
       "period": "2028.9.26.~12.26"
      }
     ],
     "library": [
      {
-      "who": "▪천안지부(당근과토끼)·:",
+      "who": "천안지부(당근과토끼)",
       "period": "10.1.~10.3"
      }
     ]
@@ -7929,203 +7929,203 @@ window.SITE_DATA = {
    "title": "가덕교회 주일학교예배 26.09.20",
    "date": "20260920",
    "kind": "주일학교예배",
-   "views": "조회수 35회"
+   "views": ""
   },
   {
    "id": "iJy5C6P5nsY",
    "title": "가덕교회 오전예배 26.09.20",
    "date": "20260920",
    "kind": "오전예배",
-   "views": "조회수 54회"
+   "views": ""
   },
   {
    "id": "Q9mFoc6TCds",
    "title": "가덕교회 오후예배 26.09.20",
    "date": "20260920",
    "kind": "오후예배",
-   "views": "조회수 29회"
+   "views": ""
   },
   {
    "id": "QFZ2WgfrT4c",
    "title": "가덕교회 오전예배 26.09.13",
    "date": "20260913",
    "kind": "오전예배",
-   "views": "조회수 104회"
+   "views": ""
   },
   {
    "id": "-Com4RZKby8",
    "title": "가덕교회 주일학교예배 26.09.13",
    "date": "20260913",
    "kind": "주일학교예배",
-   "views": "조회수 51회"
+   "views": ""
   },
   {
    "id": "qLmjF2OMWSs",
    "title": "가덕교회 주일학교예배 26.09.06",
    "date": "20260906",
    "kind": "주일학교예배",
-   "views": "조회수 36회"
+   "views": ""
   },
   {
    "id": "JDIhW6m7Hpk",
    "title": "가덕교회 오전예배 26.09.06",
    "date": "20260906",
    "kind": "오전예배",
-   "views": "조회수 69회"
+   "views": ""
   },
   {
    "id": "B_HHbHsPDpQ",
    "title": "가덕교회 오후예배 26.09.06",
    "date": "20260906",
    "kind": "오후예배",
-   "views": "조회수 60회"
+   "views": ""
   },
   {
    "id": "yW33H79O2z8",
    "title": "가덕교회 오전예배 26.08.30",
    "date": "20260830",
    "kind": "오전예배",
-   "views": "조회수 77회"
+   "views": ""
   },
   {
    "id": "Vau7ZhcXa9U",
    "title": "가덕교회 오후예배 26.08.30",
    "date": "20260830",
    "kind": "오후예배",
-   "views": "조회수 88회"
+   "views": ""
   },
   {
    "id": "rrHFYSE2JY4",
    "title": "가덕교회 오전예배 26.08.23",
    "date": "20260823",
    "kind": "오전예배",
-   "views": "조회수 66회"
+   "views": ""
   },
   {
    "id": "5Xbr4SgTcWE",
    "title": "가덕교회 오후예배 26.08.23",
    "date": "20260823",
    "kind": "오후예배",
-   "views": "조회수 139회"
+   "views": ""
   },
   {
    "id": "-HbXbFrlKfg",
    "title": "가덕교회 주일학교예배 26.08.23",
    "date": "20260823",
    "kind": "주일학교예배",
-   "views": "조회수 26회"
+   "views": ""
   },
   {
    "id": "hz7FJH8GvUo",
    "title": "가덕교회 오후예배 26.08.16",
    "date": "20260816",
    "kind": "오후예배",
-   "views": "조회수 33회"
+   "views": ""
   },
   {
    "id": "5rr4vJQRzB8",
    "title": "가덕교회 오전예배 26.08.16",
    "date": "20260816",
    "kind": "오전예배",
-   "views": "조회수 40회"
+   "views": ""
   },
   {
    "id": "2PNpZpE25zc",
    "title": "가덕교회 주일학교예배 26.08.16",
    "date": "20260816",
    "kind": "주일학교예배",
-   "views": "조회수 20회"
+   "views": ""
   },
   {
    "id": "gNL5zUARPGY",
    "title": "가덕교회 오전예배 26.08.09",
    "date": "20260809",
    "kind": "오전예배",
-   "views": "조회수 47회"
+   "views": ""
   },
   {
    "id": "bo8k6LXXgVI",
    "title": "가덕교회 주일학교예배 26.08.09",
    "date": "20260809",
    "kind": "주일학교예배",
-   "views": "조회수 30회"
+   "views": ""
   },
   {
    "id": "N8KIJmcM3WE",
    "title": "가덕교회 오후예배 26.08.09",
    "date": "20260809",
    "kind": "오후예배",
-   "views": "조회수 21회"
+   "views": ""
   },
   {
    "id": "vgQ5jdKRQ8I",
    "title": "가덕교회 오후예배 26.08.02",
    "date": "20260802",
    "kind": "오후예배",
-   "views": "조회수 23회"
+   "views": ""
   },
   {
    "id": "g-eJxC8PGpI",
    "title": "가덕교회 주일학교예배 26.08.02",
    "date": "20260802",
    "kind": "주일학교예배",
-   "views": "조회수 30회"
+   "views": ""
   },
   {
    "id": "TTMysbnttMI",
    "title": "가덕교회 오전예배 26.08.02",
    "date": "20260802",
    "kind": "오전예배",
-   "views": "조회수 53회"
+   "views": ""
   },
   {
    "id": "IG8qEn8Pj4s",
    "title": "가덕교회 오후예배 26.07.26",
    "date": "20260726",
    "kind": "오후예배",
-   "views": "조회수 28회"
+   "views": ""
   },
   {
    "id": "17uq4McQcdg",
    "title": "가덕교회 오전예배 26.07.26",
    "date": "20260726",
    "kind": "오전예배",
-   "views": "조회수 81회"
+   "views": ""
   },
   {
    "id": "iPwy2cD35cA",
    "title": "가덕교회 오전예배 26.07.19",
    "date": "20260719",
    "kind": "오전예배",
-   "views": "조회수 61회"
+   "views": ""
   },
   {
    "id": "TN_4huk2cag",
    "title": "가덕교회 오후예배 26.07.19",
    "date": "20260719",
    "kind": "오후예배",
-   "views": "조회수 19회"
+   "views": ""
   },
   {
    "id": "It7HIy1tosg",
    "title": "가덕교회 오전예배 26.07.12",
    "date": "20260712",
    "kind": "오전예배",
-   "views": "조회수 91회"
+   "views": ""
   },
   {
    "id": "IJk37595Vqk",
    "title": "가덕교회 오후예배 26.07.12",
    "date": "20260712",
    "kind": "오후예배",
-   "views": "조회수 27회"
+   "views": ""
   },
   {
    "id": "8V6Yk88jN9M",
    "title": "가덕교회 주일학교예배 26.07.12",
    "date": "20260712",
    "kind": "주일학교예배",
-   "views": "조회수 19회"
+   "views": ""
   },
   {
    "id": "la5nPUHT83Q",
