@@ -559,6 +559,144 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
   .photo-modal .pv-btns button { flex: 1; }
 }
 
+/* ── 신명기 한눈에 보기 (deuteronomy.html) ──
+   어르신 성도가 많아 이 페이지만 글자를 한 단계씩 키운다(2026-09-26 사용자 요청).
+   크기는 스케일 토큰 안에서만 고르고, 읽는 본문은 h3 크기(20px)를 보통 무게(400)로 쓴다 — 이 페이지의 예외.
+   단락 → 장 → 내용 3단계 접이식(<details>). 다섯 단락은 네이비→페리윙클 명도 단계(--dt), 모두 흰 글자 대비 4.5:1 이상. */
+.dt-c1 { --dt: #2f3166; }
+.dt-c2 { --dt: #3c3e78; }
+.dt-c3 { --dt: #4b4f94; }
+.dt-c4 { --dt: #5a5ea6; }
+.dt-c5 { --dt: #6266aa; }
+.dt-page p, .dt-page blockquote { font-size: var(--fs-h3); font-weight: 400; line-height: 1.75; }
+
+.dt-hero { padding: 44px 0 0; }
+.dt-hero .kicker { font-size: var(--fs-body); font-weight: 700; color: var(--peri-strong); margin-bottom: 10px; }
+.dt-hero h1 {
+  font-size: clamp(var(--fs-h1), 5vw, var(--fs-display)); font-weight: var(--fw-display); line-height: 1.25;
+  color: var(--peri-deep); letter-spacing: -0.02em; margin-bottom: 14px;
+}
+.dt-hero .lead { max-width: 760px; color: var(--ink); margin-bottom: 24px; }
+.dt-hero .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.dt-page .btn { padding: 13px 22px; }
+
+/* 접이식 공통 */
+.dt-acc > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+.dt-acc > summary::-webkit-details-marker { display: none; }
+.dt-acc > summary:focus-visible { outline: 3px solid var(--peri); outline-offset: 2px; }
+.dt-sum-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.dt-toggle {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff;
+  font-size: var(--fs-body); font-weight: 700; color: var(--peri-deep); white-space: nowrap;
+}
+.dt-toggle::before { content: "열기"; }
+.dt-toggle::after { content: "▾"; }
+.dt-acc[open] > summary > .dt-toggle::before { content: "닫기"; }
+.dt-acc[open] > summary > .dt-toggle::after { content: "▴"; }
+.dt-acc > summary:hover > .dt-toggle { border-color: var(--peri); background: var(--peri-soft); }
+
+/* 신명기는 어떤 책인가요? */
+.dt-about-acc { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); }
+.dt-about-acc > summary { padding: 20px 24px; }
+.dt-about-acc > summary b { font-size: var(--fs-h2); font-weight: var(--fw-h2); color: var(--peri-deep); }
+.dt-about { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-radius: 0 0 20px 20px; overflow: hidden; }
+.dt-about > div { background: #fff; padding: 20px 24px; }
+.dt-about h3 { font-size: var(--fs-body); font-weight: 700; color: var(--peri-strong); margin-bottom: 6px; }
+
+.dt-list-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dt-page .dt-list-head h2 { margin-bottom: 0; font-size: var(--fs-h1); }
+.dt-page .dt-howto { color: var(--ink-mute); margin: 8px 0 20px; }
+
+/* 1단계: 단락 */
+.dt-part {
+  background: #fff; border: 1px solid var(--line); border-left: 8px solid var(--dt);
+  border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 16px; scroll-margin-top: 76px;
+}
+.dt-part > summary { padding: 22px 24px; }
+.dt-step {
+  flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--dt); color: #fff; font-size: var(--fs-h2); font-weight: 700;
+}
+.dt-part-label { font-size: var(--fs-body); font-weight: 600; color: var(--dt); }
+.dt-part > summary b { font-size: var(--fs-h1); font-weight: var(--fw-h1); color: var(--peri-deep); line-height: 1.3; letter-spacing: -0.01em; }
+.dt-part > summary b em { font-style: normal; color: var(--dt); }
+.dt-part[open] > summary { border-bottom: 1px solid var(--line); }
+.dt-part-body { padding: 22px 24px 24px; }
+.dt-part-desc { margin-bottom: 14px; }
+.dt-page .dt-part-verse { background: var(--peri-softer); border-radius: 14px; padding: 16px 20px; margin-bottom: 8px; }
+.dt-part-verse cite { font-style: normal; font-size: var(--fs-body); font-weight: 700; color: var(--dt); white-space: nowrap; }
+.dt-page .dt-note { font-size: var(--fs-body); color: var(--ink-mute); margin-top: 8px; }
+.dt-chs { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+
+/* 2단계: 장 */
+.dt-ch { border: 1.5px solid var(--line); border-radius: 16px; background: #fff; scroll-margin-top: 76px; }
+.dt-ch[open] { border-color: var(--dt); box-shadow: 0 0 0 1px var(--dt); }
+.dt-ch > summary { padding: 16px 18px; }
+.dt-no { flex-shrink: 0; width: 64px; font-size: var(--fs-h1); font-weight: 700; line-height: 1; color: var(--dt); letter-spacing: -0.02em; }
+.dt-no small { font-size: var(--fs-body); font-weight: 600; margin-left: 2px; }
+.dt-ch > summary b { font-size: var(--fs-h2); font-weight: var(--fw-h2); color: var(--peri-deep); line-height: 1.35; }
+.dt-ch > summary .dt-sum-main > span { font-size: var(--fs-h3); font-weight: 400; color: var(--ink-mute); line-height: 1.5; }
+
+/* 3단계: 내용 */
+.dt-ch-body { padding: 4px 18px 20px 98px; }
+.dt-summary { margin-bottom: 14px; }
+.dt-page .dt-verse { background: var(--peri-softer); border-radius: 12px; padding: 14px 18px; }
+.dt-verse b { font-size: var(--fs-body); font-weight: 700; color: var(--dt); }
+.dt-page .dt-verse-ref { font-size: var(--fs-body); font-weight: 600; color: var(--ink-mute); }
+.dt-verse-ref b { color: var(--dt); font-weight: 700; }
+.dt-sermons { margin-top: 18px; }
+.dt-sermons h4 { font-size: var(--fs-h3); font-weight: var(--fw-h3); color: var(--peri-deep); margin-bottom: 10px; }
+.dt-sermon { border-left: 4px solid var(--dt); padding: 4px 0 4px 16px; margin-bottom: 18px; }
+.dt-s-meta { font-size: var(--fs-body); font-weight: 600; color: var(--ink-mute); }
+.dt-page .dt-sermon blockquote { margin: 4px 0 12px; color: var(--ink); }
+.dt-s-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.dt-next {
+  background: linear-gradient(150deg, var(--peri-deep), var(--peri-strong)); color: #fff;
+  border-radius: 20px; padding: 28px 30px;
+}
+.dt-next strong { display: block; font-size: var(--fs-h2); font-weight: var(--fw-h2); margin-bottom: 8px; }
+.dt-next p { opacity: 0.92; margin-bottom: 16px; }
+.dt-next .btn { background: #fff; color: var(--peri-deep); }
+
+/* 홈·설교방송에서 이 페이지로 가는 띠 */
+.dt-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  margin-top: 16px; padding: 16px 20px; border-radius: var(--radius);
+  background: var(--peri-softer); border: 1px solid var(--line);
+}
+.dt-banner b { color: var(--peri-deep); font-weight: 700; }
+.dt-banner > span:first-child { color: var(--ink-mute); }
+
+@media (max-width: 860px) {
+  .dt-ch-body { padding-left: 18px; }
+}
+@media (max-width: 560px) {
+  .dt-about { grid-template-columns: 1fr; }
+  .dt-about-acc > summary, .dt-part > summary { padding: 18px 16px; }
+  .dt-part-body { padding: 18px 16px 20px; }
+  .dt-part { border-left-width: 6px; }
+  .dt-step { display: none; }
+  .dt-part > summary b { font-size: var(--fs-h2); }
+  .dt-ch > summary { padding: 14px; gap: 6px; }
+  .dt-no { width: auto; font-size: var(--fs-h2); }
+  .dt-ch > summary b { font-size: var(--fs-h3); font-weight: 700; }
+  .dt-ch > summary .dt-sum-main > span { font-size: var(--fs-body); }
+  .dt-ch-body { padding: 0 14px 18px; }
+  /* 폰에서는 열기 버튼을 오른쪽 위에 띄우고 제목이 전체 폭을 쓴다 */
+  .dt-acc > summary { position: relative; flex-wrap: wrap; }
+  .dt-toggle { position: absolute; top: 14px; right: 12px; padding: 6px 12px; }
+  .dt-sum-main { flex-basis: 100%; }
+  .dt-about-acc > summary b { display: block; padding-right: 96px; }
+  .dt-part-label { display: block; min-height: 34px; padding-right: 96px; }
+  .dt-ch > summary .dt-no { min-height: 36px; }
+  .dt-next { padding: 22px 20px; }
+}
+
 /* ── 빈 상태 ── */
 .empty-note {
   padding: 40px 24px; text-align: center; color: var(--ink-mute);

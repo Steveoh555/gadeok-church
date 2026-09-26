@@ -850,7 +850,7 @@
     var cap = $(".pv-text p", m);
     cap.textContent = p.caption || "";
     cap.hidden = !p.caption;
-    var meta = [fmtDate(a.date, true)], tk = fmtTaken(a, p.taken);
+    var meta = [albumWhen(a)], tk = fmtTaken(a, p.taken);
     if (tk) meta.push(tk + " 촬영");
     meta.push((PV.i + 1) + " / " + a.photos.length);
     $(".pv-text small", m).textContent = meta.join(" · ");
@@ -866,6 +866,11 @@
     $(".pv-close", m).focus();
   }
 
+  /* 월별 앨범(주보 소식 사진 묶음)은 날짜 대신 「2026년 9월」로 보여 준다 */
+  function albumWhen(a) {
+    return a.month ? a.date.slice(0, 4) + "년 " + (+a.date.slice(4, 6)) + "월" : fmtDate(a.date, true);
+  }
+
   function renderAlbum(a) {
     document.title = a.title + " | 사진첩 | 가덕교회";
     var title = $("#photoTitle");
@@ -876,7 +881,7 @@
     $("#photoSub").hidden = true;
     var view = $("#photoView");
     view.appendChild(el("div", "album-head",
-      '<div class="album-meta"><span class="chip">' + esc(fmtDate(a.date, true)) + "</span>" +
+      '<div class="album-meta"><span class="chip">' + esc(albumWhen(a)) + "</span>" +
       '<span class="chip">사진 ' + a.photos.length + "장</span></div>" +
       (a.intro ? '<p class="album-intro">' + esc(a.intro) + "</p>" : "")));
     var grid = el("div", "photo-grid");
@@ -930,7 +935,7 @@
         var card = el("a", "album-card",
           '<div class="ac-cover"><img loading="lazy" src="' + esc(a.cover || a.photos[0].src) + '" alt="">' +
           '<span class="ac-count">사진 ' + a.photos.length + "장</span></div>" +
-          '<div class="ac-body"><div class="ac-date">' + esc(fmtDate(a.date, true)) + "</div>" +
+          '<div class="ac-body"><div class="ac-date">' + esc(albumWhen(a)) + "</div>" +
           '<div class="ac-title">' + esc(a.title) + "</div>" +
           (a.intro ? '<p class="ac-intro">' + esc(a.intro) + "</p>" : "") + "</div>");
         card.href = "photos.html?album=" + encodeURIComponent(a.id);
@@ -939,6 +944,97 @@
       view.appendChild(grid);
     }
     render();
+  }
+
+  /* ── 페이지: 신명기 한눈에 보기 ──
+     단락 → 장 → 내용 3단계 접이식(<details>). 어르신이 읽기 쉽도록 글자를 크게 한다(style.css 참고).
+     장 요약·단락은 js/deuteronomy.js(손으로 쓰는 내용), 설교 본문·문장·영상은 주보 데이터에서 가져온다. */
+  function pageDeut() {
+    var DT = window.DEUT;
+    if (!DT) return;
+    var fix = DT.quoteFix || {};
+    function quoteOf(w) { return (w.study && w.study.quote) || fix[w.date] || w.quote || ""; }
+    var TOGGLE = '<span class="dt-toggle" aria-hidden="true"></span>';
+
+    var holder = $("#dtParts");
+    DT.parts.forEach(function (p, i) {
+      var preached = 0;
+      for (var k = p.range[0]; k <= p.range[1]; k++) if (DT.chapters[k - 1].sermons) preached++;
+      var d = el("details", "dt-acc dt-part dt-c" + (i + 1));
+      d.id = p.id;
+      var html =
+        "<summary>" +
+        '<span class="dt-step">' + (i + 1) + "</span>" +
+        '<span class="dt-sum-main"><span class="dt-part-label">' + esc(p.label) + " · " + p.range[0] + "~" + p.range[1] + "장</span>" +
+        "<b><em>「" + esc(p.key) + "」</em> " + esc(p.title) + "</b></span>" + TOGGLE + "</summary>" +
+        '<div class="dt-part-body">' +
+        '<p class="dt-part-desc">' + esc(p.desc) + "</p>" +
+        '<blockquote class="dt-part-verse">' + esc(p.verseText) + " <cite>(" + esc(p.verse) + ")</cite></blockquote>" +
+        (p.range[0] <= 8 ? '<p class="dt-note">' + (p.range[1] <= 8 ? "이 단락" : p.range[0] + "~8장") +
+          "은 2026년 이전에 설교한 부분이라 성경 본문 요약만 실었습니다.</p>" : "") +
+        '<div class="dt-chs">';
+      for (var n = p.range[0]; n <= p.range[1]; n++) html += chapterItem(DT.chapters[n - 1]);
+      html += "</div></div>";
+      d.innerHTML = html;
+      holder.appendChild(d);
+    });
+
+    function chapterItem(ch) {
+      var weeks = (ch.sermons || []).map(weekByDate).filter(Boolean);
+      var sermons = weeks.map(function (w) {
+        var vids = videosOf(w.date), q = quoteOf(w);
+        return '<div class="dt-sermon">' +
+          '<div class="dt-s-meta">' + esc(fmtDate(w.date)) + " 주일 설교 · " + esc(w.scripture || "") + "</div>" +
+          (q ? "<blockquote>“" + esc(q) + "”</blockquote>" : "") +
+          '<div class="dt-s-links">' +
+          (vids.length ? '<button type="button" class="btn" data-play="' + w.date + '">▶ 설교 영상 보기</button>' : "") +
+          (w.pages && w.pages.length ? '<a class="btn ghost" href="bulletins.html?date=' + w.date + '">주보 보기</a>' : "") +
+          ((w.study || w.studyImage) ? '<a class="btn ghost" href="study.html?date=' + w.date + '">성경공부</a>' : "") +
+          "</div></div>";
+      }).join("");
+      return '<details class="dt-acc dt-ch" id="ch' + ch.n + '">' +
+        '<summary><span class="dt-no">' + ch.n + "<small>장</small></span>" +
+        '<span class="dt-sum-main"><b>' + esc(ch.title) + "</b><span>" + esc(ch.short) + "</span></span>" + TOGGLE + "</summary>" +
+        '<div class="dt-ch-body">' +
+        '<p class="dt-summary">' + esc(ch.summary) + "</p>" +
+        (ch.verseText ? '<p class="dt-verse"><b>기억할 말씀 · ' + esc(ch.verse) + "</b><br>" + esc(ch.verseText) + "</p>"
+          : '<p class="dt-verse-ref">기억할 말씀 · <b>' + esc(ch.verse) + "</b></p>") +
+        (sermons ? '<div class="dt-sermons"><h4>우리가 들은 말씀</h4>' + sermons + "</div>"
+          : (ch.n > 8 ? '<p class="dt-note">올해 주일 오전예배 본문으로 다루지 않은 장입니다.</p>' : "")) +
+        "</div></details>";
+    }
+
+    $all("[data-play]", holder).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var list = videosOf(b.getAttribute("data-play"));
+        var main = list.filter(function (v) { return v.kind === "오전예배"; })[0] || list[0];
+        if (main) playVideo(main);
+      });
+    });
+
+    /* 모두 펼치기 / 모두 접기 */
+    var allBtn = $("#dtAll");
+    function syncAll() {
+      var any = $all("details.dt-acc", holder).some(function (x) { return !x.open; });
+      allBtn.textContent = any ? "모두 펼치기" : "모두 접기";
+    }
+    allBtn.addEventListener("click", function () {
+      var open = allBtn.textContent === "모두 펼치기";
+      $all("details.dt-acc", holder).forEach(function (x) { x.open = open; });
+      syncAll();
+    });
+    $all("details.dt-acc", holder).forEach(function (x) { x.addEventListener("toggle", syncAll); });
+
+    /* 주소 끝 #ch12 · #p3 로 들어오면 그 단락(과 장)을 펼쳐서 보여 준다 */
+    if (location.hash) {
+      var t = document.getElementById(location.hash.slice(1));
+      if (t && t.tagName === "DETAILS") {
+        t.open = true;
+        var par = t.parentElement && t.parentElement.closest("details");
+        if (par) par.open = true;
+        requestAnimationFrame(function () { t.scrollIntoView(); });
+      }
+    }
   }
 
   /* ── 페이지: 교회소개 ── */
@@ -955,7 +1051,7 @@
     /* 활성 메뉴 */
     var page = document.body.getAttribute("data-page");
     $all(".gnb a").forEach(function (a) {
-      if (a.getAttribute("data-nav") === page) a.classList.add("on");
+      if (a.getAttribute("data-nav") === (page === "deut" ? "sermons" : page)) a.classList.add("on");
     });
     /* 푸터 공통 */
     $all("[data-cfg]").forEach(function (e) {
@@ -968,5 +1064,6 @@
     if (page === "study") pageStudy();
     if (page === "photos") pagePhotos();
     if (page === "about") pageAbout();
+    if (page === "deut") pageDeut();
   });
 })();
