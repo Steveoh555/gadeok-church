@@ -952,14 +952,16 @@
   function pageDeut() {
     var DT = window.DEUT;
     if (!DT) return;
-    var fix = DT.quoteFix || {};
+    var fix = DT.quoteFix || {}, past = DT.past || {};
+    /* 2026년 주보는 data.js에서, 2025년(강해 시작 부분)은 deuteronomy.js의 past에서 */
+    function sermonWeek(date) {
+      return weekByDate(date) || (past[date] ? { date: date, scripture: past[date].scripture, quote: past[date].quote } : null);
+    }
     function quoteOf(w) { return (w.study && w.study.quote) || fix[w.date] || w.quote || ""; }
     var TOGGLE = '<span class="dt-toggle" aria-hidden="true"></span>';
 
     var holder = $("#dtParts");
     DT.parts.forEach(function (p, i) {
-      var preached = 0;
-      for (var k = p.range[0]; k <= p.range[1]; k++) if (DT.chapters[k - 1].sermons) preached++;
       var d = el("details", "dt-acc dt-part dt-c" + (i + 1));
       d.id = p.id;
       var html =
@@ -970,8 +972,6 @@
         '<div class="dt-part-body">' +
         '<p class="dt-part-desc">' + esc(p.desc) + "</p>" +
         '<blockquote class="dt-part-verse">' + esc(p.verseText) + " <cite>(" + esc(p.verse) + ")</cite></blockquote>" +
-        (p.range[0] <= 8 ? '<p class="dt-note">' + (p.range[1] <= 8 ? "이 단락" : p.range[0] + "~8장") +
-          "은 2026년 이전에 설교한 부분이라 성경 본문 요약만 실었습니다.</p>" : "") +
         '<div class="dt-chs">';
       for (var n = p.range[0]; n <= p.range[1]; n++) html += chapterItem(DT.chapters[n - 1]);
       html += "</div></div>";
@@ -980,11 +980,11 @@
     });
 
     function chapterItem(ch) {
-      var weeks = (ch.sermons || []).map(weekByDate).filter(Boolean);
+      var weeks = (ch.sermons || []).map(sermonWeek).filter(Boolean);
       var sermons = weeks.map(function (w) {
         var vids = videosOf(w.date), q = quoteOf(w);
         return '<div class="dt-sermon">' +
-          '<div class="dt-s-meta">' + esc(fmtDate(w.date)) + " 주일 설교 · " + esc(w.scripture || "") + "</div>" +
+          '<div class="dt-s-meta">' + esc(fmtDate(w.date, w.date.slice(0, 4) !== "2026")) + " 주일 설교 · " + esc(w.scripture || "") + "</div>" +
           (q ? "<blockquote>“" + esc(q) + "”</blockquote>" : "") +
           '<div class="dt-s-links">' +
           (vids.length ? '<button type="button" class="btn" data-play="' + w.date + '">▶ 설교 영상 보기</button>' : "") +
@@ -1000,7 +1000,7 @@
         (ch.verseText ? '<p class="dt-verse"><b>기억할 말씀 · ' + esc(ch.verse) + "</b><br>" + esc(ch.verseText) + "</p>"
           : '<p class="dt-verse-ref">기억할 말씀 · <b>' + esc(ch.verse) + "</b></p>") +
         (sermons ? '<div class="dt-sermons"><h4>우리가 들은 말씀</h4>' + sermons + "</div>"
-          : (ch.n > 8 ? '<p class="dt-note">올해 주일 오전예배 본문으로 다루지 않은 장입니다.</p>' : "")) +
+          : (ch.n > 8 ? '<p class="dt-note">신명기 강해 중 주일 오전예배 본문으로 다루지 않은 장입니다.</p>' : "")) +
         "</div></details>";
     }
 
