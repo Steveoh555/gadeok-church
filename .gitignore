@@ -19,6 +19,7 @@ tools/
 CLAUDE.md
 사용법.md
 작업정리.md
+성경공부 제작 규칙.txt
 주보업데이트.bat
 
 # 사이트는 js/data.js 만 읽으므로 원본 데이터는 올리지 않습니다
