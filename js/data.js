@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-10-04 08:49",
+ "generated": "2026-10-04 19:40",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -8151,6 +8151,27 @@ window.SITE_DATA = {
   }
  ],
  "videos": [
+  {
+   "id": "U5ArdtOZMro",
+   "title": "가덕교회 오후예배 26.10.04",
+   "date": "20261004",
+   "kind": "오후예배",
+   "views": ""
+  },
+  {
+   "id": "Ghwr7syLFZs",
+   "title": "가덕교회 주일학교예배 26.10.04",
+   "date": "20261004",
+   "kind": "주일학교예배",
+   "views": ""
+  },
+  {
+   "id": "8DwdtWuw0w8",
+   "title": "가덕교회 오전예배 26.10.04",
+   "date": "20261004",
+   "kind": "오전예배",
+   "views": ""
+  },
   {
    "id": "lOADf5nQjhE",
    "title": "가덕교회 오전예배 26.09.27",
