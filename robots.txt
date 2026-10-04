@@ -7,6 +7,10 @@ User-agent: Twitterbot
 Allow: /
 
 User-agent: *
+# 홈 화면은 검색에 싣지 않지만(noindex) 읽기는 허용한다. 막아 두면 구글이 주소만 올리고
+# 「이 페이지에 관한 정보가 없습니다」로 표시하기 때문(2026-10-04). 읽으면 noindex를 보고 결과에서 뺀다.
+Allow: /$
+Allow: /index.html$
 Allow: /about.html
 Allow: /sermons.html
 Allow: /css/
