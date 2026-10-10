@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-10-10 23:19",
+ "generated": "2026-10-10 23:24",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -347,8 +347,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260104/p1.jpg",
-    "assets/bulletins/20260104/p2.jpg"
+    "assets/bulletins/20260104/p1.webp",
+    "assets/bulletins/20260104/p2.webp"
    ],
    "pdf": "assets/bulletins/20260104/bulletin.pdf"
   },
@@ -516,8 +516,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260111/p1.jpg",
-    "assets/bulletins/20260111/p2.jpg"
+    "assets/bulletins/20260111/p1.webp",
+    "assets/bulletins/20260111/p2.webp"
    ],
    "pdf": "assets/bulletins/20260111/bulletin.pdf"
   },
@@ -681,8 +681,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260118/p1.jpg",
-    "assets/bulletins/20260118/p2.jpg"
+    "assets/bulletins/20260118/p1.webp",
+    "assets/bulletins/20260118/p2.webp"
    ],
    "pdf": "assets/bulletins/20260118/bulletin.pdf"
   },
@@ -850,8 +850,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260125/p1.jpg",
-    "assets/bulletins/20260125/p2.jpg"
+    "assets/bulletins/20260125/p1.webp",
+    "assets/bulletins/20260125/p2.webp"
    ],
    "pdf": "assets/bulletins/20260125/bulletin.pdf"
   },
@@ -1026,8 +1026,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260208/p1.jpg",
-    "assets/bulletins/20260208/p2.jpg"
+    "assets/bulletins/20260208/p1.webp",
+    "assets/bulletins/20260208/p2.webp"
    ],
    "pdf": "assets/bulletins/20260208/bulletin.pdf"
   },
@@ -1239,8 +1239,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260215/p1.jpg",
-    "assets/bulletins/20260215/p2.jpg"
+    "assets/bulletins/20260215/p1.webp",
+    "assets/bulletins/20260215/p2.webp"
    ],
    "pdf": "assets/bulletins/20260215/bulletin.pdf"
   },
@@ -1452,8 +1452,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260222/p1.jpg",
-    "assets/bulletins/20260222/p2.jpg"
+    "assets/bulletins/20260222/p1.webp",
+    "assets/bulletins/20260222/p2.webp"
    ],
    "pdf": "assets/bulletins/20260222/bulletin.pdf"
   },
@@ -1657,8 +1657,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260301/p1.jpg",
-    "assets/bulletins/20260301/p2.jpg"
+    "assets/bulletins/20260301/p1.webp",
+    "assets/bulletins/20260301/p2.webp"
    ],
    "pdf": "assets/bulletins/20260301/bulletin.pdf"
   },
@@ -1845,8 +1845,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260308/p1.jpg",
-    "assets/bulletins/20260308/p2.jpg"
+    "assets/bulletins/20260308/p1.webp",
+    "assets/bulletins/20260308/p2.webp"
    ],
    "pdf": "assets/bulletins/20260308/bulletin.pdf"
   },
@@ -2038,8 +2038,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260315/p1.jpg",
-    "assets/bulletins/20260315/p2.jpg"
+    "assets/bulletins/20260315/p1.webp",
+    "assets/bulletins/20260315/p2.webp"
    ],
    "pdf": "assets/bulletins/20260315/bulletin.pdf"
   },
@@ -2223,8 +2223,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260322/p1.jpg",
-    "assets/bulletins/20260322/p2.jpg"
+    "assets/bulletins/20260322/p1.webp",
+    "assets/bulletins/20260322/p2.webp"
    ],
    "pdf": "assets/bulletins/20260322/bulletin.pdf"
   },
@@ -2420,8 +2420,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260329/p1.jpg",
-    "assets/bulletins/20260329/p2.jpg"
+    "assets/bulletins/20260329/p1.webp",
+    "assets/bulletins/20260329/p2.webp"
    ],
    "pdf": "assets/bulletins/20260329/bulletin.pdf"
   },
@@ -2572,8 +2572,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260405/p1.jpg",
-    "assets/bulletins/20260405/p2.jpg"
+    "assets/bulletins/20260405/p1.webp",
+    "assets/bulletins/20260405/p2.webp"
    ],
    "pdf": "assets/bulletins/20260405/bulletin.pdf"
   },
@@ -2753,8 +2753,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260412/p1.jpg",
-    "assets/bulletins/20260412/p2.jpg"
+    "assets/bulletins/20260412/p1.webp",
+    "assets/bulletins/20260412/p2.webp"
    ],
    "pdf": "assets/bulletins/20260412/bulletin.pdf"
   },
@@ -2950,8 +2950,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260419/p1.jpg",
-    "assets/bulletins/20260419/p2.jpg"
+    "assets/bulletins/20260419/p1.webp",
+    "assets/bulletins/20260419/p2.webp"
    ],
    "pdf": "assets/bulletins/20260419/bulletin.pdf"
   },
@@ -3174,8 +3174,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260503/p1.jpg",
-    "assets/bulletins/20260503/p2.jpg"
+    "assets/bulletins/20260503/p1.webp",
+    "assets/bulletins/20260503/p2.webp"
    ],
    "pdf": "assets/bulletins/20260503/bulletin.pdf"
   },
@@ -3428,8 +3428,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260510/p1.jpg",
-    "assets/bulletins/20260510/p2.jpg"
+    "assets/bulletins/20260510/p1.webp",
+    "assets/bulletins/20260510/p2.webp"
    ],
    "pdf": "assets/bulletins/20260510/bulletin.pdf"
   },
@@ -3694,8 +3694,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260517/p1.jpg",
-    "assets/bulletins/20260517/p2.jpg"
+    "assets/bulletins/20260517/p1.webp",
+    "assets/bulletins/20260517/p2.webp"
    ],
    "pdf": "assets/bulletins/20260517/bulletin.pdf"
   },
@@ -3944,8 +3944,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260524/p1.jpg",
-    "assets/bulletins/20260524/p2.jpg"
+    "assets/bulletins/20260524/p1.webp",
+    "assets/bulletins/20260524/p2.webp"
    ],
    "pdf": "assets/bulletins/20260524/bulletin.pdf"
   },
@@ -4178,8 +4178,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260531/p1.jpg",
-    "assets/bulletins/20260531/p2.jpg"
+    "assets/bulletins/20260531/p1.webp",
+    "assets/bulletins/20260531/p2.webp"
    ],
    "pdf": "assets/bulletins/20260531/bulletin.pdf"
   },
@@ -4400,8 +4400,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260607/p1.jpg",
-    "assets/bulletins/20260607/p2.jpg"
+    "assets/bulletins/20260607/p1.webp",
+    "assets/bulletins/20260607/p2.webp"
    ],
    "pdf": "assets/bulletins/20260607/bulletin.pdf"
   },
@@ -4630,8 +4630,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260614/p1.jpg",
-    "assets/bulletins/20260614/p2.jpg"
+    "assets/bulletins/20260614/p1.webp",
+    "assets/bulletins/20260614/p2.webp"
    ],
    "pdf": "assets/bulletins/20260614/bulletin.pdf"
   },
@@ -4856,8 +4856,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260621/p1.jpg",
-    "assets/bulletins/20260621/p2.jpg"
+    "assets/bulletins/20260621/p1.webp",
+    "assets/bulletins/20260621/p2.webp"
    ],
    "pdf": "assets/bulletins/20260621/bulletin.pdf"
   },
@@ -5082,8 +5082,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260628/p1.jpg",
-    "assets/bulletins/20260628/p2.jpg"
+    "assets/bulletins/20260628/p1.webp",
+    "assets/bulletins/20260628/p2.webp"
    ],
    "pdf": "assets/bulletins/20260628/bulletin.pdf"
   },
@@ -5316,8 +5316,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260705/p1.jpg",
-    "assets/bulletins/20260705/p2.jpg"
+    "assets/bulletins/20260705/p1.webp",
+    "assets/bulletins/20260705/p2.webp"
    ],
    "pdf": "assets/bulletins/20260705/bulletin.pdf"
   },
@@ -5554,8 +5554,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260712/p1.jpg",
-    "assets/bulletins/20260712/p2.jpg"
+    "assets/bulletins/20260712/p1.webp",
+    "assets/bulletins/20260712/p2.webp"
    ],
    "pdf": "assets/bulletins/20260712/bulletin.pdf"
   },
@@ -5767,8 +5767,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260719/p1.jpg",
-    "assets/bulletins/20260719/p2.jpg"
+    "assets/bulletins/20260719/p1.webp",
+    "assets/bulletins/20260719/p2.webp"
    ],
    "pdf": "assets/bulletins/20260719/bulletin.pdf"
   },
@@ -5989,8 +5989,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260726/p1.jpg",
-    "assets/bulletins/20260726/p2.jpg"
+    "assets/bulletins/20260726/p1.webp",
+    "assets/bulletins/20260726/p2.webp"
    ],
    "pdf": "assets/bulletins/20260726/bulletin.pdf"
   },
@@ -6211,8 +6211,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260802/p1.jpg",
-    "assets/bulletins/20260802/p2.jpg"
+    "assets/bulletins/20260802/p1.webp",
+    "assets/bulletins/20260802/p2.webp"
    ],
    "pdf": "assets/bulletins/20260802/bulletin.pdf",
    "study": {
@@ -6454,8 +6454,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260809/p1.jpg",
-    "assets/bulletins/20260809/p2.jpg"
+    "assets/bulletins/20260809/p1.webp",
+    "assets/bulletins/20260809/p2.webp"
    ],
    "pdf": "assets/bulletins/20260809/bulletin.pdf",
    "study": {
@@ -6697,8 +6697,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260816/p1.jpg",
-    "assets/bulletins/20260816/p2.jpg"
+    "assets/bulletins/20260816/p1.webp",
+    "assets/bulletins/20260816/p2.webp"
    ],
    "pdf": "assets/bulletins/20260816/bulletin.pdf"
   },
@@ -6875,8 +6875,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260823/p1.jpg",
-    "assets/bulletins/20260823/p2.jpg"
+    "assets/bulletins/20260823/p1.webp",
+    "assets/bulletins/20260823/p2.webp"
    ],
    "pdf": "assets/bulletins/20260823/bulletin.pdf"
   },
@@ -7061,8 +7061,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260830/p1.jpg",
-    "assets/bulletins/20260830/p2.jpg"
+    "assets/bulletins/20260830/p1.webp",
+    "assets/bulletins/20260830/p2.webp"
    ],
    "pdf": "assets/bulletins/20260830/bulletin.pdf",
    "study": {
@@ -7259,8 +7259,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260906/p1.jpg",
-    "assets/bulletins/20260906/p2.jpg"
+    "assets/bulletins/20260906/p1.webp",
+    "assets/bulletins/20260906/p2.webp"
    ],
    "pdf": "assets/bulletins/20260906/bulletin.pdf",
    "study": {
@@ -7293,7 +7293,7 @@ window.SITE_DATA = {
      "하나님의 마음"
     ]
    },
-   "studyImage": "assets/study/20260906.jpg"
+   "studyImage": "assets/study/20260906.webp"
   },
   {
    "date": "20260913",
@@ -7458,8 +7458,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260913/p1.jpg",
-    "assets/bulletins/20260913/p2.jpg"
+    "assets/bulletins/20260913/p1.webp",
+    "assets/bulletins/20260913/p2.webp"
    ],
    "pdf": "assets/bulletins/20260913/bulletin.pdf",
    "study": {
@@ -7494,7 +7494,7 @@ window.SITE_DATA = {
      "한개의 가능성"
     ]
    },
-   "studyImage": "assets/study/20260913.jpg"
+   "studyImage": "assets/study/20260913.webp"
   },
   {
    "date": "20260920",
@@ -7665,8 +7665,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260920/p1.jpg",
-    "assets/bulletins/20260920/p2.jpg"
+    "assets/bulletins/20260920/p1.webp",
+    "assets/bulletins/20260920/p2.webp"
    ],
    "pdf": "assets/bulletins/20260920/bulletin.pdf",
    "study": {
@@ -7702,7 +7702,7 @@ window.SITE_DATA = {
      "말씀충만"
     ]
    },
-   "studyImage": "assets/study/20260920.png"
+   "studyImage": "assets/study/20260920.webp"
   },
   {
    "date": "20260927",
@@ -7885,8 +7885,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20260927/p1.jpg",
-    "assets/bulletins/20260927/p2.jpg"
+    "assets/bulletins/20260927/p1.webp",
+    "assets/bulletins/20260927/p2.webp"
    ],
    "pdf": "assets/bulletins/20260927/bulletin.pdf",
    "study": {
@@ -7920,7 +7920,7 @@ window.SITE_DATA = {
      "내가 성도여야 한다는 사실과 내가 그리스도안에 있어야한다"
     ]
    },
-   "studyImage": "assets/study/20260927.jpg"
+   "studyImage": "assets/study/20260927.webp"
   },
   {
    "date": "20261004",
@@ -8111,8 +8111,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20261004/p1.jpg",
-    "assets/bulletins/20261004/p2.jpg"
+    "assets/bulletins/20261004/p1.webp",
+    "assets/bulletins/20261004/p2.webp"
    ],
    "pdf": "assets/bulletins/20261004/bulletin.pdf",
    "study": {
@@ -8147,7 +8147,7 @@ window.SITE_DATA = {
      "그리스도안에서 함께 하늘에 앉히시고"
     ]
    },
-   "studyImage": "assets/study/20261004.jpg"
+   "studyImage": "assets/study/20261004.webp"
   },
   {
    "date": "20261011",
@@ -8333,8 +8333,8 @@ window.SITE_DATA = {
     ]
    },
    "pages": [
-    "assets/bulletins/20261011/p1.jpg",
-    "assets/bulletins/20261011/p2.jpg"
+    "assets/bulletins/20261011/p1.webp",
+    "assets/bulletins/20261011/p2.webp"
    ],
    "pdf": "assets/bulletins/20261011/bulletin.pdf",
    "study": {
@@ -8365,7 +8365,7 @@ window.SITE_DATA = {
      "천국의 설계도"
     ]
    },
-   "studyImage": "assets/study/20261011.jpg"
+   "studyImage": "assets/study/20261011.webp"
   }
  ],
  "videos": [
@@ -8670,10 +8670,10 @@ window.SITE_DATA = {
    "date": "20260724",
    "title": "중고등부 수련회 단체사진",
    "intro": "7월 24일 밤, 중고등부 수련회의 한 장면입니다. 밤 10시가 넘었는데도 표정만큼은 한낮처럼 환합니다.",
-   "cover": "assets/photos/20260724-a2cc26/e2ed96184b.jpg",
+   "cover": "assets/photos/20260724-a2cc26/e2ed96184b.webp",
    "photos": [
     {
-     "src": "assets/photos/20260724-a2cc26/e2ed96184b.jpg",
+     "src": "assets/photos/20260724-a2cc26/e2ed96184b.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-07-24 22:02",
@@ -8687,10 +8687,10 @@ window.SITE_DATA = {
    "date": "20260901",
    "title": "9월 주보 사진",
    "intro": "9월 주보에 실린 교회 소식 사진을 한 달치로 모았습니다. 9월 온세대예배(어린이찬양대·다음세대 축복·어린이 성경봉독), 할렐루야·마리아 여전도회 연합헌신예배 특송, 가덕선교마을을 찾은 i2i DTS 학생들 소개, 기타동아리, 이야기창고 테라스 수리가 담겼습니다.",
-   "cover": "assets/photos/20260901-447d96/d3c57cde75.jpg",
+   "cover": "assets/photos/20260901-447d96/d3c57cde75.webp",
    "photos": [
     {
-     "src": "assets/photos/20260901-447d96/d600ad3239.jpg",
+     "src": "assets/photos/20260901-447d96/d600ad3239.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-13 15:45",
@@ -8698,7 +8698,7 @@ window.SITE_DATA = {
      "caption": "가덕교회 기타동아리 모임이 본당에서 열렸습니다. 손짓으로 박자를 짚어 주는 선생님 앞에서 모두 코드 잡기에 진지합니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/d8ab084190.jpg",
+     "src": "assets/photos/20260901-447d96/d8ab084190.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-20 09:13",
@@ -8706,7 +8706,7 @@ window.SITE_DATA = {
      "caption": "아이 셋이 마이크 하나를 나눠 들고 한 주 동안 감사한 일을 이야기합니다. 뒤 화면에는 「여호와여 내가 만민 중에서 주께 감사하고」 말씀이 떠 있습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/05e3856f20.jpg",
+     "src": "assets/photos/20260901-447d96/05e3856f20.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-20 11:20",
@@ -8714,7 +8714,7 @@ window.SITE_DATA = {
      "caption": "가덕교회 주일예배는 10시 50분부터 20분간 찬양을 선포하며 시작합니다. 「찬양 Praise Offering」 화면 아래 찬양대가 섰습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/3b9444643a.jpg",
+     "src": "assets/photos/20260901-447d96/3b9444643a.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-20 11:21",
@@ -8722,7 +8722,7 @@ window.SITE_DATA = {
      "caption": "주일예배는 10시 50분부터 20분간 찬양으로 시작합니다. 보라색 가운을 입은 찬양대가 「찬양 Praise Offering」 화면 아래 나란히 섰습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/b8359fe4b7.jpg",
+     "src": "assets/photos/20260901-447d96/b8359fe4b7.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-20 12:07",
@@ -8730,7 +8730,7 @@ window.SITE_DATA = {
      "caption": "예배를 마치고 선교사님 가족이 마이크를 잡았습니다. 「말씀 붙잡고」 현수막 앞에서 잘 다녀오겠다는 인사를 전했습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/dae85bce7c.jpg",
+     "src": "assets/photos/20260901-447d96/dae85bce7c.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-20 14:05",
@@ -8738,7 +8738,7 @@ window.SITE_DATA = {
      "caption": "화면에 「마음의 전쟁터」가 떠 있습니다. 무엇을 경외하며 사는지를 묻는 오후 강의 시간입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/8d491394f5.jpg",
+     "src": "assets/photos/20260901-447d96/8d491394f5.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-23 10:13",
@@ -8746,7 +8746,7 @@ window.SITE_DATA = {
      "caption": "유초등부 주일학교 벽에 걸린 헌금꽂이입니다. 섬기는 분들과 아이들의 얼굴 사진이 한 칸씩 자리를 잡았습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/e113f66a8d.jpg",
+     "src": "assets/photos/20260901-447d96/e113f66a8d.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-23 10:46",
@@ -8754,7 +8754,7 @@ window.SITE_DATA = {
      "caption": "하얀 저고리를 입은 아기가 탁자 위에 앉아 창밖을 바라봅니다. 발가락까지 꼼지락, 구경에 한창입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/8b8f2472ec.jpg",
+     "src": "assets/photos/20260901-447d96/8b8f2472ec.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 11:20",
@@ -8762,7 +8762,7 @@ window.SITE_DATA = {
      "caption": "9월 27일은 온 세대가 함께 드리는 9월 온세대예배였습니다. 십자가가 수놓인 헌금 주머니 앞에서 아기도 눈을 동그랗게 뜹니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/3d0f8b8166.jpg",
+     "src": "assets/photos/20260901-447d96/3d0f8b8166.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 11:24",
@@ -8770,7 +8770,7 @@ window.SITE_DATA = {
      "caption": "온세대예배 날, 어린이찬양대가 찬양했습니다. 화면에는 「일찍 주의 뜻을 따라서 살아가게 하시고」 가사가 떠 있습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/3a6bd6b02d.jpg",
+     "src": "assets/photos/20260901-447d96/3a6bd6b02d.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 11:28",
@@ -8778,7 +8778,7 @@ window.SITE_DATA = {
      "caption": "9월 온세대예배에서 가덕교회의 다음세대를 축복했습니다. 부모들이 아이를 안고 앞으로 나와 축복 기도를 받았습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/019d7a5908.jpg",
+     "src": "assets/photos/20260901-447d96/019d7a5908.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 11:30",
@@ -8786,7 +8786,7 @@ window.SITE_DATA = {
      "caption": "온세대예배 날, 어린이가 보면대 앞에서 또박또박 말씀을 읽었습니다. 강대상의 포도송이 조각이 든든한 배경이 되었습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/123f57917e.jpg",
+     "src": "assets/photos/20260901-447d96/123f57917e.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 11:30",
@@ -8794,7 +8794,7 @@ window.SITE_DATA = {
      "caption": "온세대예배의 성경봉독 순서입니다. 국화 화분 사이로 온 교회가 어린이의 목소리에 귀를 기울입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/2d0daf398f.jpg",
+     "src": "assets/photos/20260901-447d96/2d0daf398f.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 12:08",
@@ -8802,7 +8802,7 @@ window.SITE_DATA = {
      "caption": "9월 27일 주일, 가덕선교마을을 찾은 YWAM i2i DTS 학생 12명과 최혜성 전도사님, 케일리 사모님과 자녀 4명을 교회에 소개했습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/066e89ffde.jpg",
+     "src": "assets/photos/20260901-447d96/066e89ffde.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-27 14:06",
@@ -8810,42 +8810,42 @@ window.SITE_DATA = {
      "caption": "9월 27일 오후예배는 할렐루야·마리아 여전도회(5060여전도회) 연합헌신예배로 드렸습니다. 하얀 옷을 맞춰 입고 손을 잡은 특송입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/cba2a07a52.jpg",
+     "src": "assets/photos/20260901-447d96/cba2a07a52.webp",
      "w": 541,
      "h": 960,
      "title": "바닥을 걷어낸 테라스",
      "caption": "이야기창고 테라스의 낡은 상판을 걷어내니 골조만 남았습니다. 공구를 늘어놓고 한 칸씩 손을 봅니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/c46e60172f.jpg",
+     "src": "assets/photos/20260901-447d96/c46e60172f.webp",
      "w": 541,
      "h": 960,
      "title": "공사가 한창",
      "caption": "잘라 놓은 나무와 공구 가방이 테라스 한쪽에 줄지어 있습니다. 새 널을 끼울 자리를 다듬는 중입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/58bb7781bd.jpg",
+     "src": "assets/photos/20260901-447d96/58bb7781bd.webp",
      "w": 541,
      "h": 960,
      "title": "새 널이 깔리고",
      "caption": "색이 밝은 새 나무가 오래된 바닥 사이사이에 들어갔습니다. 손님을 맞이할 준비가 되어 갑니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/0ad12bb8e8.jpg",
+     "src": "assets/photos/20260901-447d96/0ad12bb8e8.webp",
      "w": 960,
      "h": 720,
      "title": "손수 고치는 손길",
      "caption": "두 사람이 허리를 굽혀 톱질하고 널을 맞춥니다. 뒤로는 가덕도의 산자락이 보입니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/d3c57cde75.jpg",
+     "src": "assets/photos/20260901-447d96/d3c57cde75.webp",
      "w": 1000,
      "h": 750,
      "title": "노을 앞에 다 함께",
      "caption": "해 질 무렵 물가에서 다 같이 모여 섰습니다. 하늘빛이 물 위로 길게 내려앉았습니다."
     },
     {
-     "src": "assets/photos/20260901-447d96/652c14d553.jpg",
+     "src": "assets/photos/20260901-447d96/652c14d553.webp",
      "w": 1000,
      "h": 667,
      "title": "꽃다발로 맞이하다",
@@ -8859,10 +8859,10 @@ window.SITE_DATA = {
    "date": "20260923",
    "title": "i2i DTS 개강예배",
    "intro": "9월 23일 i2i DTS 개강예배입니다. 오전 10시 반, 「i2i DTS」 배너 앞에서 이성수 담임목사님이 훈련생들을 맞았습니다.",
-   "cover": "assets/photos/20260923-a104db/f9eaa576a6.jpg",
+   "cover": "assets/photos/20260923-a104db/f9eaa576a6.webp",
    "photos": [
     {
-     "src": "assets/photos/20260923-a104db/dc01485885.jpg",
+     "src": "assets/photos/20260923-a104db/dc01485885.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-23 10:15",
@@ -8870,7 +8870,7 @@ window.SITE_DATA = {
      "caption": "카메라와 모니터를 갖춰 개강예배를 영상으로 담습니다. 화면 너머로 자리를 채운 사람들이 보입니다."
     },
     {
-     "src": "assets/photos/20260923-a104db/07b4081cc6.jpg",
+     "src": "assets/photos/20260923-a104db/07b4081cc6.webp",
      "w": 1000,
      "h": 563,
      "taken": "2026-09-23 10:35",
@@ -8878,7 +8878,7 @@ window.SITE_DATA = {
      "caption": "이성수 담임목사님과 함께 선 한 분이 나란히 마이크를 들었습니다. 두 사람 뒤로 「i2i DTS」 배너와 나무 십자가, 초록 덩굴 장식이 개강을 알립니다."
     },
     {
-     "src": "assets/photos/20260923-a104db/f9eaa576a6.jpg",
+     "src": "assets/photos/20260923-a104db/f9eaa576a6.webp",
      "w": 1000,
      "h": 563,
      "taken": "2026-09-23 10:36",
@@ -8892,10 +8892,10 @@ window.SITE_DATA = {
    "date": "20260923",
    "title": "수요기도회",
    "intro": "9월 23일 수요기도회입니다. 시간이 저녁 7시로 앞당겨진 뒤 맞은 수요일 저녁, 박동민 목사님이 말씀을 전했습니다.",
-   "cover": "assets/photos/20260923-bb4d0d/77946c60c2.jpg",
+   "cover": "assets/photos/20260923-bb4d0d/77946c60c2.webp",
    "photos": [
     {
-     "src": "assets/photos/20260923-bb4d0d/9d286cf38d.jpg",
+     "src": "assets/photos/20260923-bb4d0d/9d286cf38d.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-23 19:00",
@@ -8903,7 +8903,7 @@ window.SITE_DATA = {
      "caption": "강대상 앞에 선 박동민 목사님이 성경을 펴 놓고 첫 말씀을 읽습니다. 왼쪽에는 올해 표어 배너가 서 있습니다."
     },
     {
-     "src": "assets/photos/20260923-bb4d0d/77946c60c2.jpg",
+     "src": "assets/photos/20260923-bb4d0d/77946c60c2.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-09-23 19:00",
@@ -8917,10 +8917,10 @@ window.SITE_DATA = {
    "date": "20261001",
    "title": "10월 주보 사진",
    "intro": "10월 주보에 실린 교회 소식 사진을 모았습니다. 새신랑 석승윤 형제의 인사, 등록하신 배준용·김금숙 선교사님 가족, 박인숙·방희연 피택권사님의 교육나눔과 교육파일 전달식, 기타동아리, 송대성 집사님 모친 장례 소식과 한가위 인사가 담겼습니다.",
-   "cover": "assets/photos/20261001-c69f98/6ea4fb841f.jpg",
+   "cover": "assets/photos/20261001-c69f98/6ea4fb841f.webp",
    "photos": [
     {
-     "src": "assets/photos/20261001-c69f98/a41b8ad490.jpg",
+     "src": "assets/photos/20261001-c69f98/a41b8ad490.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-02 18:25",
@@ -8928,7 +8928,7 @@ window.SITE_DATA = {
      "caption": "10월 2일 금요일, 송대성 집사님의 어머니 고 윤재순 권사님(청송제일교회 은퇴권사)께서 소천하셨습니다. 장례식장 앞에 송대성 집사님 가족이 함께 섰습니다. 유가족에게 하나님의 위로가 함께하기를 기도합니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/6ea4fb841f.jpg",
+     "src": "assets/photos/20261001-c69f98/6ea4fb841f.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-04 11:23",
@@ -8936,7 +8936,7 @@ window.SITE_DATA = {
      "caption": "화면에 「오직 주만이 나의 산성」 악보가 떠 있습니다. 보라색 가운의 찬양대가 주일 오전을 엽니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/d546fbf804.jpg",
+     "src": "assets/photos/20261001-c69f98/d546fbf804.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-04 12:07",
@@ -8944,7 +8944,7 @@ window.SITE_DATA = {
      "caption": "10월 4일 주일, 결혼을 앞둔 새신랑 석승윤 형제와 미국에서 온 전시준 형제가 앞에 나와 인사했습니다. 석승윤 형제는 10월 10일 정은서 자매와 결혼했습니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/19bc1b510f.jpg",
+     "src": "assets/photos/20261001-c69f98/19bc1b510f.webp",
      "w": 1000,
      "h": 563,
      "taken": "2026-10-04 13:02",
@@ -8952,7 +8952,7 @@ window.SITE_DATA = {
      "caption": "10월 11일 가덕교회에 등록 인사를 하신 배준용·김금숙 선교사님 부부와 막내딸(가운데)입니다. 새 가족을 환영합니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/71a76a6b2d.jpg",
+     "src": "assets/photos/20261001-c69f98/71a76a6b2d.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-04 14:03",
@@ -8960,7 +8960,7 @@ window.SITE_DATA = {
      "caption": "10월 4일 오후예배는 피택권사 교육나눔과 섬김결단의 시간이었습니다. 박인숙·방희연 피택권사님이 부산노회 평신도신학원에서 받은 교육을 나누었습니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/cdf5f32fe6.jpg",
+     "src": "assets/photos/20261001-c69f98/cdf5f32fe6.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-04 14:36",
@@ -8968,7 +8968,7 @@ window.SITE_DATA = {
      "caption": "이어지는 피택권사 교육나눔입니다. 배운 것을 섬김으로 이어 가겠다는 결단의 고백에 예배당이 귀를 기울였습니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/30ed614acf.jpg",
+     "src": "assets/photos/20261001-c69f98/30ed614acf.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-04 15:17",
@@ -8976,7 +8976,7 @@ window.SITE_DATA = {
      "caption": "박인숙·방희연 피택권사님이 부산노회 평신도신학원에서 받은 교육파일을 전달하셨습니다. 「장년 주일학교」 현수막 앞에서 기념사진을 남겼습니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/e218fe50ae.jpg",
+     "src": "assets/photos/20261001-c69f98/e218fe50ae.webp",
      "w": 1000,
      "h": 563,
      "taken": "2026-10-04 15:26",
@@ -8984,14 +8984,14 @@ window.SITE_DATA = {
      "caption": "10월 4일 주일 오후예배 후, 기타동아리 모임이 있었습니다. 기타를 든 사람들이 둥글게 앉아 연습보다 웃음이 먼저 터졌습니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/338b3733cb.jpg",
+     "src": "assets/photos/20261001-c69f98/338b3733cb.webp",
      "w": 937,
      "h": 1000,
      "title": "풍성하고 행복한 한가위",
      "caption": "한복을 차려입은 가족이 「풍성하고 행복한 한가위 보내세요」 인사를 전합니다. 아기 머리의 꽃 장식이 명절 분위기를 더합니다."
     },
     {
-     "src": "assets/photos/20261001-c69f98/8e9b788ec3.jpg",
+     "src": "assets/photos/20261001-c69f98/8e9b788ec3.webp",
      "w": 1000,
      "h": 750,
      "title": "다 함께 찰칵",
@@ -9005,10 +9005,10 @@ window.SITE_DATA = {
    "date": "20261003",
    "title": "어르신 나들이",
    "intro": "10월 3일 토요일, 가덕교회 어르신사역팀 주관으로 1남전도회·임마누엘여전도회·안나여전도회 어르신 나들이를 다녀왔습니다. 충무동 새벽시장에서 식사하고 자갈치시장을 둘러보았습니다.",
-   "cover": "assets/photos/20261003-bef54a/f7c558e02d.jpg",
+   "cover": "assets/photos/20261003-bef54a/f7c558e02d.webp",
    "photos": [
     {
-     "src": "assets/photos/20261003-bef54a/03f0178ef2.jpg",
+     "src": "assets/photos/20261003-bef54a/03f0178ef2.webp",
      "w": 1000,
      "h": 750,
      "taken": "2026-10-03 12:21",
@@ -9016,14 +9016,14 @@ window.SITE_DATA = {
      "caption": "충무동 새벽시장에서 함께 점심을 먹었습니다. 긴 식탁마다 접시가 가득하고 이야기꽃이 핍니다."
     },
     {
-     "src": "assets/photos/20261003-bef54a/072b780b55.jpg",
+     "src": "assets/photos/20261003-bef54a/072b780b55.webp",
      "w": 750,
      "h": 1000,
      "title": "푸짐한 한 상",
      "caption": "회 한 접시를 가운데 두고 전, 샐러드, 밤, 땅콩, 고구마까지 빈틈이 없습니다. 식사 뒤에는 자갈치시장 나들이가 이어졌습니다."
     },
     {
-     "src": "assets/photos/20261003-bef54a/f7c558e02d.jpg",
+     "src": "assets/photos/20261003-bef54a/f7c558e02d.webp",
      "w": 1000,
      "h": 750,
      "title": "다 함께 손하트",
