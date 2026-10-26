@@ -1105,6 +1105,59 @@
     $("main").appendChild(sec);
   }
 
+  /* ── 줄맞춤 사진 배치(2026-10-26) ──
+     한 줄의 사진은 모두 같은 높이, 가로 폭은 사진 비율대로. 세로 사진·가로 사진이 섞여도, 1장이든 여러 장이든
+     줄 높이가 늘 비슷하게(약 300px, 폰에서는 약 220px) 맞춰져 통일감 있게 보인다.
+     마지막 줄이 짧으면(사진 1장, 세로 사진 1장 등) 사진을 키우지 않고 같은 높이로 두고 오른쪽을 비운다. */
+  function justifiedGallery(box, album) {
+    function draw() {
+      var W = box.clientWidth || 1000, gap = 10;
+      var rowH = W < 600 ? 170 : 230, T = W / rowH;            // 한 줄에 들어갈 「비율 합」 목표
+      var MAXH = 1.15;   // 거의 찬 줄은 15%까지 키워 양쪽 끝을 맞춘다. 그보다 비면 같은 높이로 두고 오른쪽을 비운다
+      var items = album.photos.map(function (p, i) { return { p: p, i: i, ar: (p.w && p.h) ? p.w / p.h : 1.33 }; });
+      // 줄 나누기: 가능한 모든 끊는 자리 중 「줄 높이가 목표에 가깝고, 마지막 줄 빈자리가 적은」 것을 고른다
+      // (예: 가로 사진 3장은 2장+1장보다 한 줄 3장, 세로 1장+가로 3장은 한 줄 4장)
+      var n = items.length, best = [0], cut = [0];
+      for (var j = 1; j <= n; j++) {
+        best[j] = Infinity;
+        for (var i = 0, s = 0; i < j; i++) {
+          s = 0;
+          for (var k = i; k < j; k++) s += items[k].ar;
+          // 꽉 차는 줄: 목표 높이와의 차이(너무 납작해지면 큰 벌점) / 덜 차는 줄: 같은 높이로 두고 빈자리만큼(중간 줄은 두 배)
+          var h = (W - gap * (j - i - 1)) / s;                              // 이 줄을 꽉 채웠을 때 높이
+          var c = h <= rowH * MAXH ? Math.pow((h - rowH) / rowH, 2) + (h < rowH * 0.8 ? 10 : 0)
+            : (j === n ? 1 : 2) * Math.pow((T - s) / T, 2);
+          if (best[i] + c < best[j]) { best[j] = best[i] + c; cut[j] = i; }
+        }
+      }
+      var rows = [];
+      for (var e = n; e > 0; e = cut[e]) rows.unshift(items.slice(cut[e], e));
+      box.innerHTML = "";
+      rows.forEach(function (row, ri) {
+        var r = el("div", "jg-row"), s = row.reduce(function (t, it) { return t + it.ar; }, 0);
+        row.forEach(function (it) {
+          var b = el("button", "jg-item", '<img loading="lazy" src="' + esc(it.p.src) + '" alt="' + esc(it.p.title || album.title) + '">');
+          b.type = "button";
+          b.style.flex = it.ar + " 1 0";
+          b.style.aspectRatio = it.p.w && it.p.h ? it.p.w + " / " + it.p.h : "4 / 3";
+          b.setAttribute("aria-label", (it.p.title || album.title) + " 크게 보기");
+          b.addEventListener("click", function () { openPhotoViewer(album, it.i, b); });
+          r.appendChild(b);
+        });
+        var full = (W - gap * (row.length - 1)) / s;                         // 꽉 채웠을 때 높이
+        if (full > rowH * MAXH) r.appendChild(el("span", "jg-fill")).style.flex = ((W - gap * row.length) / rowH - s) + " 1 0";   // 덜 차는 줄은 키우지 않고 같은 높이로
+        r.style.gap = gap + "px";
+        box.appendChild(r);
+      });
+    }
+    draw();
+    var t, w0 = box.clientWidth;
+    window.addEventListener("resize", function () {
+      clearTimeout(t);
+      t = setTimeout(function () { if (box.clientWidth !== w0) { w0 = box.clientWidth; draw(); } }, 150);
+    });
+  }
+
   /* ── 페이지: 중고등부 — 주일마다 올라오는 청소년 말씀노트(2026-10-26) ── */
   function pageYouth() {
     var Y = (D.youth || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
@@ -1158,25 +1211,18 @@
     /* 그 주간 중고등부 활동 사진 — 사진첩의 중고등부 앨범 중 지난 월요일~그 주일 날짜인 것 */
     var from = (function () { var d = new Date(+w.date.slice(0, 4), +w.date.slice(4, 6) - 1, +w.date.slice(6, 8) - 6);
       return d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2); })();
-    var mine = ALBUMS.filter(function (a) { return a.dept === "중고등부" && !a.month && a.date >= from && a.date <= w.date; });
+    var mine = ALBUMS.filter(function (a) { return a.dept === "중고등부" && !a.month && a.date >= from && a.date <= w.date; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });   // 날짜 순(먼저 한 활동이 위)
     if (mine.length) {
       var ph = $(".yw-photos", box);
       ph.innerHTML = '<div class="yw-note"><h3>이번 주 중고등부</h3><p>이 주간 활동 사진입니다. 누르면 크게 볼 수 있어요.</p></div>';
       mine.forEach(function (a) {
         var g = el("div", "yw-album");
         g.appendChild(el("div", "yw-album-head", "<b>" + esc(a.title) + '</b><a class="more-link" href="photos.html?album=' + encodeURIComponent(a.id) + '">사진첩에서 보기 →</a>'));
-        var row = el("div", "photo-grid");
-        a.photos.forEach(function (p, i) {
-          var b = el("button", "", '<img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.title || a.title) + '" width="' + p.w + '" height="' + p.h + '">');
-          b.type = "button";
-          b.setAttribute("aria-label", (p.title || a.title) + " 크게 보기");
-          b.addEventListener("click", function () { openPhotoViewer(a, i, b); });
-          var fig = el("figure", "photo-card");
-          fig.appendChild(b);
-          row.appendChild(fig);
-        });
-        g.appendChild(row);
+        var gal = el("div", "jg");
+        g.appendChild(gal);
         ph.firstChild.appendChild(g);
+        justifiedGallery(gal, a);
       });
     }
     Y.forEach(function (x) {

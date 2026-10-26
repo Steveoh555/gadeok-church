@@ -835,6 +835,13 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 .filter-row.stack { flex-direction: column; gap: 10px; }
 .filter-row .pf-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
-/* 「이번 주 중고등부」 사진은 자르지 않고 원래 비율로(세로 카드형 사진도 글자가 잘리지 않게) */
-.yw-album .photo-card button { aspect-ratio: auto; }
-.yw-album .photo-card button img { height: auto; }
+/* 줄맞춤 사진 배치(justifiedGallery) — 한 줄은 같은 높이, 폭은 사진 비율대로(2026-10-26) */
+.jg-row { display: flex; align-items: flex-start; margin-bottom: 10px; }
+.jg-item {
+  display: block; min-width: 0; padding: 0; border: 0; border-radius: 12px; overflow: hidden;
+  background: var(--peri-soft); box-shadow: var(--shadow); cursor: zoom-in;
+}
+.jg-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s; }
+.jg-item:hover img { transform: scale(1.03); }
+.jg-item:focus-visible { outline: 3px solid var(--peri-deep); outline-offset: 2px; }
+.jg-fill { display: block; min-width: 0; }
