@@ -834,3 +834,7 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
 /* 사진첩 부서 버튼 줄 + 해 버튼 줄(2026-10-26) */
 .filter-row.stack { flex-direction: column; gap: 10px; }
 .filter-row .pf-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* 「이번 주 중고등부」 사진은 자르지 않고 원래 비율로(세로 카드형 사진도 글자가 잘리지 않게) */
+.yw-album .photo-card button { aspect-ratio: auto; }
+.yw-album .photo-card button img { height: auto; }

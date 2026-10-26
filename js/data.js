@@ -1,6 +1,6 @@
 // 자동 생성 파일 — tools/update_site.py 가 만듭니다. 직접 수정하지 마세요.
 window.SITE_DATA = {
- "generated": "2026-10-26 15:54",
+ "generated": "2026-10-26 16:04",
  "config": {
   "churchName": "가덕교회",
   "churchNameEn": "Gadeok Church",
@@ -9621,6 +9621,23 @@ window.SITE_DATA = {
      "caption": "또 한 장의 가족 기념사진입니다. 축하하러 온 가족들 사이에서 신랑 신부가 더 빛납니다."
     }
    ]
+  },
+  {
+   "id": "20261025-1082bc",
+   "date": "20261025",
+   "title": "예배를 위한 핸드폰 수거",
+   "intro": "중고등부는 예배 전에 핸드폰을 잠시 한곳에 모아 둡니다. 화면을 내려놓고 말씀과 서로에게 집중하는 작은 약속입니다.",
+   "cover": "assets/photos/20261025-1082bc/fa59aff080.webp",
+   "photos": [
+    {
+     "src": "assets/photos/20261025-1082bc/fa59aff080.webp",
+     "w": 800,
+     "h": 1000,
+     "title": "잠시 내려놓은 화면, 함께 모은 마음",
+     "caption": "칸칸이 꽂힌 핸드폰들이 예배가 끝날 때까지 얌전히 기다립니다. 알림 대신 말씀에 귀 기울이는 시간이에요."
+    }
+   ],
+   "dept": "중고등부"
   }
  ],
  "youth": [
