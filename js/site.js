@@ -915,35 +915,57 @@
 
     var years = [], cur = "전체";
     ALBUMS.forEach(function (a) { var y = a.date.slice(0, 4); if (years.indexOf(y) < 0) years.push(y); });
-    if (years.length > 1) {
-      filter.hidden = false;
-      ["전체"].concat(years).forEach(function (y) {
-        var b = el("button", y === cur ? "on" : "", y === "전체" ? "전체" : y + "년");
+    /* 다음세대 부서 사진첩(2026-10-26) — 부서 앨범이 하나라도 있으면 「전체 · 교회 · 부서」 버튼, ?dept=중고등부 로도 연다 */
+    var depts = DEPT_ORDER.filter(function (d) { return ALBUMS.some(function (a) { return a.dept === d; }); });
+    var dcur = depts.indexOf(param("dept")) >= 0 ? param("dept") : "전체";
+    function addButtons(list, label, isOn, pick) {
+      var row = el("div", "pf-row");
+      filter.classList.add("stack");
+      list.forEach(function (v) {
+        var b = el("button", isOn(v) ? "on" : "", label(v));
         b.type = "button";
         b.addEventListener("click", function () {
-          cur = y;
-          $all("button", filter).forEach(function (x) { x.classList.toggle("on", x === b); });
+          pick(v);
+          $all("button", row).forEach(function (x) { x.classList.toggle("on", x === b); });
           render();
         });
-        filter.appendChild(b);
+        row.appendChild(b);
       });
+      filter.appendChild(row);
+    }
+    if (depts.length) {
+      filter.hidden = false;
+      addButtons(["전체", "교회"].concat(depts), function (v) { return v; },
+        function (v) { return v === dcur; }, function (v) { dcur = v; });
+    }
+    if (years.length > 1) {
+      filter.hidden = false;
+      addButtons(["전체"].concat(years), function (y) { return y === "전체" ? "모든 해" : y + "년"; },
+        function (y) { return y === cur; }, function (y) { cur = y; });
     }
     function render() {
       view.innerHTML = "";
-      var grid = el("div", "album-grid");
-      ALBUMS.filter(function (a) { return cur === "전체" || a.date.slice(0, 4) === cur; }).forEach(function (a) {
-        var card = el("a", "album-card",
-          '<div class="ac-cover"><img loading="lazy" src="' + esc(a.cover || a.photos[0].src) + '" alt="">' +
-          '<span class="ac-count">사진 ' + a.photos.length + "장</span></div>" +
-          '<div class="ac-body"><div class="ac-date">' + esc(albumWhen(a)) + "</div>" +
-          '<div class="ac-title">' + esc(a.title) + "</div>" +
-          (a.intro ? '<p class="ac-intro">' + esc(a.intro) + "</p>" : "") + "</div>");
-        card.href = "photos.html?album=" + encodeURIComponent(a.id);
-        grid.appendChild(card);
+      var list = ALBUMS.filter(function (a) {
+        return (cur === "전체" || a.date.slice(0, 4) === cur) &&
+          (dcur === "전체" || (dcur === "교회" ? !a.dept : a.dept === dcur));
       });
+      if (!list.length) return view.appendChild(el("div", "empty-note", "이 조건에 맞는 사진이 아직 없습니다."));
+      var grid = el("div", "album-grid");
+      list.forEach(function (a) { grid.appendChild(albumCard(a)); });
       view.appendChild(grid);
     }
     render();
+  }
+  var DEPT_ORDER = ["유초등부", "중고등부", "청년대학부"];
+  function albumCard(a) {
+    var card = el("a", "album-card",
+      '<div class="ac-cover"><img loading="lazy" src="' + esc(a.cover || a.photos[0].src) + '" alt="">' +
+      '<span class="ac-count">사진 ' + a.photos.length + "장</span></div>" +
+      '<div class="ac-body"><div class="ac-date">' + esc(albumWhen(a)) + (a.dept ? " · " + esc(a.dept) : "") + "</div>" +
+      '<div class="ac-title">' + esc(a.title) + "</div>" +
+      (a.intro ? '<p class="ac-intro">' + esc(a.intro) + "</p>" : "") + "</div>");
+    card.href = "photos.html?album=" + encodeURIComponent(a.id);
+    return card;
   }
 
   /* ── 페이지: 신명기 한눈에 보기 ──
@@ -1046,12 +1068,131 @@
     renderServices($("#serviceGrid"));
   }
 
+  /* ── 페이지: 다음세대(유초등부·중고등부·청년대학부) 공통 ── */
+  function hm12(t) {
+    var p = String(t || "").split(":"), h = +p[0], m = p[1] || "00";
+    if (isNaN(h)) return t || "";
+    return (h < 12 ? "오전 " : "오후 ") + (h % 12 === 0 ? 12 : h % 12) + ":" + m;
+  }
+  function pageNextgen() {
+    var box = $("#ngFacts");
+    if (!box) return;
+    var dept = box.getAttribute("data-dept"), role = box.getAttribute("data-role");
+    var sv = (CFG.services || []).filter(function (s) { return s.name === dept; })[0];
+    var st = (CFG.staff || []).filter(function (s) { return s.role === role; })[0];
+    var facts = [];
+    if (sv) facts.push(["예배", (sv.day || "") + " " + hm12(sv.time)], ["장소", sv.note || ""]);
+    facts.push(["대상", box.getAttribute("data-age")]);
+    if (st) facts.push(["담당", st.name]);
+    box.innerHTML = facts.filter(function (f) { return f[1]; }).map(function (f) {
+      return "<span><b>" + esc(f[0]) + "</b>" + esc(f[1]) + "</span>";
+    }).join("");
+    /* 부서 활동 사진(교회 드라이브 「다음세대 사진 › 부서」) — 최근 앨범 6개 */
+    var name = { kids: "유초등부", youth: "중고등부", young: "청년대학부" }[document.body.getAttribute("data-page")];
+    var mine = ALBUMS.filter(function (a) { return a.dept === name; });
+    if (!mine.length) return;
+    var ready = $(".ng-ready");
+    if (ready) ready.hidden = true;
+    var sec = el("section", "section"), wrap = el("div", "wrap");
+    wrap.appendChild(el("div", "sec-head", "<h2>" + esc(name) + ' 활동 사진</h2><a class="more-link" href="photos.html?dept=' +
+      encodeURIComponent(name) + '">사진첩에서 모두 보기 →</a>'));
+    var grid = el("div", "album-grid");
+    grid.style.marginTop = "16px";
+    mine.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 6)
+      .forEach(function (a) { grid.appendChild(albumCard(a)); });
+    wrap.appendChild(grid);
+    sec.appendChild(wrap);
+    $("main").appendChild(sec);
+  }
+
+  /* ── 페이지: 중고등부 — 주일마다 올라오는 청소년 말씀노트(2026-10-26) ── */
+  function pageYouth() {
+    var Y = (D.youth || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var box = $("#youthWeek"), past = $("#youthPast");
+    if (!Y.length) {
+      box.innerHTML = '<h2>이번 주 말씀</h2><div class="empty-note">첫 말씀노트는 주일 오후에 올라옵니다.</div>';
+      past.closest(".section").hidden = true;
+      return;
+    }
+    var want = param("w"), w = Y.filter(function (x) { return x.date === want; })[0] || Y[0];
+    if (w !== Y[0]) document.title = fmtDate(w.date) + " 말씀노트 | 중고등부 | 가덕교회";
+    var s = w.summary, c = w.challenge, kv = w.keyVerse;
+    var html = '<h2>' + (w === Y[0] ? "이번 주 말씀" : "지난 말씀") + "</h2>" +
+      '<div class="yw-head"><span class="chip">' + esc(fmtDate(w.date, true)) + "</span>" +
+      (w.sundayTitle ? '<span class="chip">' + esc(w.sundayTitle) + "</span>" : "") + "</div>" +
+      '<div class="yw-title">' + esc(w.title || w.scripture) + "</div>" +
+      '<p class="yw-ref">' + esc([w.scripture, w.hymn].filter(Boolean).join(" · ")) + "</p>" +
+      '<div class="yw-top">' +
+        (w.cover ? '<div class="yw-cover"><img src="' + esc(w.cover) + '" alt="' + esc(w.title || "") + ' 표지 그림" width="800" height="800"></div>' : "") +
+        "<div>" +
+          (s ? '<div class="yw-vs"><div class="x"><b>✕ ' + esc(s.x) + "</b>" + esc(s.xText) + "</div>" +
+               '<div class="o"><b>○ ' + esc(s.o) + "</b>" + esc(s.oText) + "</div></div>" +
+               (s.bar ? '<div class="yw-bar">' + esc(s.bar) + "</div>" : "") : "") +
+          (w.sermonLine ? '<p class="yw-line"><small>오늘의 설교 한 문장</small>❝' + esc(w.sermonLine) + "❞</p>" : "") +
+        "</div>" +
+      "</div>" +
+      '<div class="yw-cards">' +
+        (kv ? '<div class="yw-card"><h3>핵심 구절<small>외워 봐요</small></h3><p class="kv"><small>' + esc(kv.ref) + "</small>" + esc(kv.text) + "</p></div>" : "") +
+        (w.thinks && w.thinks.length ? '<div class="yw-card"><h3>식탁 질문<small>가족·친구와 함께 나눠요</small></h3><ol>' +
+          w.thinks.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ol></div>" : "") +
+        '<div class="yw-card"><h3>이번 주 갓생 챌린지' + (c && c.title ? "<small>" + esc(c.title) + "</small>" : "") + "</h3>" +
+          (c && c.options ? "<ul>" + c.options.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>" : "") +
+          (!c && w.apply ? "<p>" + esc(w.apply) + "</p>" : "") + "</div>" +
+      "</div>" +
+      '<div class="yw-photos"></div>' +
+      (w.pages && w.pages.length ? '<div class="yw-note"><h3>청소년 말씀노트</h3><p>주일에 함께 쓴 노트입니다. 누르면 크게 볼 수 있어요.</p><div class="yw-pages"></div></div>' : "");
+    box.innerHTML = html;
+    /* 말씀노트 — 주보처럼 펼친 면(1·2쪽, 3·4쪽)을 크게 */
+    var grid = $(".yw-pages", box);
+    if (grid) {
+      var album = { title: fmtDate(w.date) + " 청소년 말씀노트", date: w.date,
+        photos: w.pages.map(function (p) { return { src: p.src, w: p.w, h: p.h, title: p.label || "" }; }) };
+      album.photos.forEach(function (p, i) {
+        var b = el("button", "bulletin-page", '<img loading="lazy" src="' + esc(p.src) + '" alt="말씀노트 ' + esc(p.title) + '" width="' + p.w + '" height="' + p.h + '"><span>' + esc(p.title) + "</span>");
+        b.type = "button";
+        b.setAttribute("aria-label", "말씀노트 " + p.title + " 크게 보기");
+        b.addEventListener("click", function () { openPhotoViewer(album, i, b); });
+        grid.appendChild(b);
+      });
+    }
+    /* 그 주간 중고등부 활동 사진 — 사진첩의 중고등부 앨범 중 지난 월요일~그 주일 날짜인 것 */
+    var from = (function () { var d = new Date(+w.date.slice(0, 4), +w.date.slice(4, 6) - 1, +w.date.slice(6, 8) - 6);
+      return d.getFullYear() + ("0" + (d.getMonth() + 1)).slice(-2) + ("0" + d.getDate()).slice(-2); })();
+    var mine = ALBUMS.filter(function (a) { return a.dept === "중고등부" && !a.month && a.date >= from && a.date <= w.date; });
+    if (mine.length) {
+      var ph = $(".yw-photos", box);
+      ph.innerHTML = '<div class="yw-note"><h3>이번 주 중고등부</h3><p>이 주간 활동 사진입니다. 누르면 크게 볼 수 있어요.</p></div>';
+      mine.forEach(function (a) {
+        var g = el("div", "yw-album");
+        g.appendChild(el("div", "yw-album-head", "<b>" + esc(a.title) + '</b><a class="more-link" href="photos.html?album=' + encodeURIComponent(a.id) + '">사진첩에서 보기 →</a>'));
+        var row = el("div", "photo-grid");
+        a.photos.forEach(function (p, i) {
+          var b = el("button", "", '<img loading="lazy" src="' + esc(p.src) + '" alt="' + esc(p.title || a.title) + '" width="' + p.w + '" height="' + p.h + '">');
+          b.type = "button";
+          b.setAttribute("aria-label", (p.title || a.title) + " 크게 보기");
+          b.addEventListener("click", function () { openPhotoViewer(a, i, b); });
+          var fig = el("figure", "photo-card");
+          fig.appendChild(b);
+          row.appendChild(fig);
+        });
+        g.appendChild(row);
+        ph.firstChild.appendChild(g);
+      });
+    }
+    Y.forEach(function (x) {
+      var a = el("a", x === w ? "on" : "", esc(fmtDate(x.date)) + (x.title ? "<small>" + esc(x.title) + "</small>" : ""));
+      a.href = "youth.html?w=" + x.date;
+      past.appendChild(a);
+    });
+  }
+
   /* ── 초기화 ── */
   document.addEventListener("DOMContentLoaded", function () {
-    /* 활성 메뉴 */
+    /* 활성 메뉴 — 다음세대 세 페이지는 「다음세대」에 불이 들어온다 */
     var page = document.body.getAttribute("data-page");
+    var NAV_OF = { deut: "sermons", kids: "nextgen", youth: "nextgen", young: "nextgen" };
     $all(".gnb a").forEach(function (a) {
-      if (a.getAttribute("data-nav") === (page === "deut" ? "sermons" : page)) a.classList.add("on");
+      if (a.getAttribute("data-nav") === (NAV_OF[page] || page)) a.classList.add("on");
     });
     /* 푸터 공통 */
     $all("[data-cfg]").forEach(function (e) {
@@ -1065,5 +1206,7 @@
     if (page === "photos") pagePhotos();
     if (page === "about") pageAbout();
     if (page === "deut") pageDeut();
+    if (page === "kids" || page === "youth" || page === "young") pageNextgen();
+    if (page === "youth") pageYouth();
   });
 })();

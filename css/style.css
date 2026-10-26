@@ -731,3 +731,106 @@ a.service-card span { color: var(--ink-mute); font-size: var(--fs-caption); font
   .study-sheet ol.sh-items { margin: 16px 16px; }
   .sh-tools, .sh-share { margin-left: 16px; margin-right: 16px; }
 }
+
+/* ── 다음세대 메뉴(드롭다운) · 2026-10-26 ──
+   데스크톱: 「다음세대」에 마우스를 올리거나 키보드로 들어가면 유초등부·중고등부·청년대학부가 펼쳐진다.
+   모바일(860px 이하): 메뉴 줄이 옆으로 밀리는 영역이라 펼침 목록이 잘리므로 숨기고, 각 다음세대 페이지 위의 탭으로 옮겨 다닌다. */
+.gnb-dd { position: relative; display: flex; }
+.gnb-dd .dd {
+  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  flex-direction: column; gap: 2px; min-width: 132px; padding: 6px; margin-top: 4px;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); z-index: 60;
+}
+.gnb-dd .dd::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; } /* 마우스가 틈에서 끊기지 않게 */
+.gnb-dd:hover .dd, .gnb-dd:focus-within .dd { display: flex; }
+.gnb-dd .dd a { border-radius: 8px; text-align: center; }
+
+/* ── 다음세대 페이지 공통 ── */
+.ng-tabs { display: flex; gap: 6px; margin-top: 28px; flex-wrap: wrap; }
+.ng-tabs a {
+  padding: 8px 18px; border-radius: 999px; border: 1.5px solid var(--line);
+  font-size: var(--fs-body); font-weight: 600; color: var(--ink-mute); background: #fff;
+}
+.ng-tabs a:hover { border-color: var(--peri); color: var(--peri-deep); }
+.ng-tabs a.on { background: var(--peri-deep); border-color: var(--peri-deep); color: #fff; }
+.ng-hero {
+  margin-top: 18px; padding: 34px 32px; border-radius: 20px;
+  background: linear-gradient(135deg, var(--peri-deep) 0%, #5a5ea6 100%); color: #fff;
+}
+.ng-hero .chip { background: rgba(255,255,255,0.16); color: #fff; }
+.ng-hero h1 { font-size: clamp(var(--fs-h1), 5vw, var(--fs-display)); font-weight: var(--fw-display); letter-spacing: -0.02em; margin: 10px 0 8px; }
+.ng-hero p { color: #dfe0f4; max-width: 640px; }
+.ng-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.ng-facts span { background: rgba(255,255,255,0.12); border-radius: 12px; padding: 8px 14px; font-size: var(--fs-body); }
+.ng-facts b { font-weight: 700; margin-right: 6px; color: #fff; }
+.ng-ready { margin-top: 28px; }
+
+/* 웜업예배 30분 흐름 */
+.wu-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; counter-reset: wu; }
+.wu-flow li {
+  list-style: none; background: var(--peri-softer); border-radius: var(--radius); padding: 16px 12px; text-align: center;
+  font-size: var(--fs-body); font-weight: 600; color: var(--peri-deep); position: relative;
+}
+.wu-flow li::before {
+  counter-increment: wu; content: counter(wu); display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin: 0 auto 8px; border-radius: 50%;
+  background: var(--peri-deep); color: #fff; font-size: var(--fs-caption); font-weight: 700;
+}
+.wu-flow li small { display: block; color: var(--ink-mute); font-size: var(--fs-caption); font-weight: var(--fw-caption); margin-top: 4px; }
+
+/* 이번 주 말씀 카드 */
+.yw-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.yw-title { font-size: var(--fs-h1); font-weight: var(--fw-h1); color: var(--peri-deep); letter-spacing: -0.02em; line-height: 1.3; }
+.yw-ref { color: var(--ink-mute); margin-top: 4px; }
+.yw-top { display: grid; grid-template-columns: 300px 1fr; gap: 26px; margin-top: 22px; align-items: start; }
+.yw-cover { border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 1; }
+.yw-cover img { width: 100%; height: 100%; object-fit: cover; }
+.yw-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.yw-vs div { border-radius: var(--radius); padding: 16px 18px; }
+.yw-vs .x { background: #fdecea; }
+.yw-vs .o { background: var(--peri-deep); color: #fff; }
+.yw-vs b { display: block; font-size: var(--fs-h3); font-weight: 700; margin-bottom: 4px; }
+.yw-vs .x b { color: #c0473a; }
+.yw-bar { margin-top: 12px; background: var(--peri-soft); color: var(--peri-deep); border-radius: var(--radius); padding: 12px 18px; font-weight: 600; }
+.yw-line { margin-top: 18px; font-size: var(--fs-h3); font-weight: var(--fw-h3); line-height: 1.6; color: var(--ink); }
+.yw-line small { display: block; font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute); margin-bottom: 4px; }
+.yw-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+.yw-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 20px 18px; }
+.yw-card h3 { font-size: var(--fs-h3); font-weight: var(--fw-h3); color: var(--peri-deep); margin-bottom: 10px; }
+.yw-card h3 small { display: block; font-size: var(--fs-caption); font-weight: var(--fw-caption); color: var(--ink-mute); margin-top: 2px; }
+.yw-card ol, .yw-card ul { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+.yw-card .kv { font-weight: 600; line-height: 1.7; }
+.yw-card .kv small { display: block; color: var(--peri-strong); font-size: var(--fs-caption); font-weight: 700; margin-bottom: 6px; }
+.yw-note { margin-top: 30px; }
+.yw-note h3 { font-size: var(--fs-h3); font-weight: var(--fw-h3); color: var(--peri-deep); margin-bottom: 4px; }
+.yw-note > p { color: var(--ink-mute); margin-bottom: 14px; }
+/* 말씀노트: 주보처럼 펼친 면(1·2쪽, 3·4쪽)을 크게 위아래로 */
+.yw-pages { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.yw-pages .bulletin-page { padding: 0; width: 100%; cursor: zoom-in; }
+.yw-pages img { width: 100%; height: auto; }
+.yw-pages span { display: block; padding: 8px 0; font-size: var(--fs-caption); font-weight: 600; color: var(--ink-mute); border-top: 1px solid var(--line); }
+.yw-album { margin-top: 6px; }
+.yw-album + .yw-album { margin-top: 22px; }
+.yw-album-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.yw-album-head b { font-size: var(--fs-body); font-weight: 700; color: var(--ink); }
+.yw-past { display: flex; flex-wrap: wrap; gap: 8px; }
+.yw-past a { padding: 8px 14px; border-radius: 999px; background: var(--peri-softer); font-size: var(--fs-body); font-weight: 600; color: var(--peri-deep); }
+.yw-past a.on { background: var(--peri-deep); color: #fff; }
+.yw-past a small { font-size: var(--fs-caption); font-weight: var(--fw-caption); opacity: 0.75; margin-left: 6px; }
+
+@media (max-width: 860px) {
+  .gnb-dd .dd { display: none !important; }
+  .wu-flow { grid-template-columns: repeat(3, 1fr); }
+  .yw-top { grid-template-columns: 1fr; }
+  .yw-cover { max-width: 360px; }
+  .yw-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ng-hero { padding: 26px 20px; }
+  .wu-flow { grid-template-columns: 1fr 1fr; }
+  .yw-vs { grid-template-columns: 1fr; }
+}
+
+/* 사진첩 부서 버튼 줄 + 해 버튼 줄(2026-10-26) */
+.filter-row.stack { flex-direction: column; gap: 10px; }
+.filter-row .pf-row { display: flex; gap: 8px; flex-wrap: wrap; }
